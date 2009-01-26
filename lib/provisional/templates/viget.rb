@@ -17,18 +17,6 @@ plugin 'model_generator_with_factories', :git => 'git://github.com/vigetlabs/mod
 plugin 'viget_deployment', :git => 'git://github.com/vigetlabs/viget_deployment.git'
 plugin 'vl_cruise_control', :git => 'git://github.com/vigetlabs/vl_cruise_control.git'
 
-# install .gitignore
-run 'cat <<E0F >.gitignore
-.DS_Store
-config/database.yml
-coverage
-db/*.sqlite3
-doc/api
-doc/app
-log/*.log
-tmp/**/*
-E0F'
-
 # generate viget_deployment stuff
 generate :viget_deployment
 

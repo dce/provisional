@@ -1,5 +1,3 @@
-# FIXME: needs to handle ignored files
-
 module Provisional
   module SCM
     class Svn
@@ -32,8 +30,9 @@ module Provisional
         steps = [
           "cd #{@options[:name]}/trunk",
           "svn add *",
+          Provisional::IGNORE_FILES.collect{|f| "svn propset svn:ignore '#{f[1]}' #{f[0]}"},          
           "svn commit -m 'Initial commit by Provisional'"
-        ]
+        ].flatten
         steps.join(' && ')
       end
     end

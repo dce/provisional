@@ -25,6 +25,7 @@ module Provisional
       def checkin
         steps = [
           "cd #{@options[:name]}",
+          "printf \"#{Provisional::IGNORE_FILES.collect{|f| f[0]+'/'+f[1]+'\n'}}\" >.gitignore",
           "git add .",
           "git commit -m 'Initial commit by Provisional'"
         ]
