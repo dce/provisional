@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'provisional'
+require 'provisional/version'
+require 'trollop'
+
+opts = Trollop::options do
+  version "Provisional #{Provisional::Version}"
+  opt :name, "Name of the project", :type => String
+  opt :scm, "SCM to use (git or svn)", :type => String, :default => 'git'
+  opt :rails, "Path to rails generator script", :type => String, :default => `which rails`.chomp
+  opt :template, "Rails template to use", :type => String, :default => 'viget'
+end
+
+full_path_to_template = File.join(File.dirname(__FILE__),'..','lib','provisional','templates',"#{opts[:template]}.rb")
+
+Trollop::die(:name, "must be specified") unless opts[:name]
+Trollop::die(:scm, "is not supported: #{opts[:scm]}") unless %w(git svn).include?(opts[:scm])
+Trollop::die(:rails, "must be specified") if opts[:rails].to_s.empty?
+Trollop::die(:rails, "is not valid: #{opts[:rails]}") unless File.exist?(opts[:rails]) && File.executable?(opts[:rails])
+Trollop::die(:template, "is not valid: #{opts[:template]}") unless File.exist?(full_path_to_template)
+
+`#{opts[:rails]} #{opts[:name]} -m #{full_path_to_template}`

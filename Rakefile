@@ -6,7 +6,7 @@ require 'lib/provisional/version'
 
 task :default => :test
 
-spec = Gem::Specification.new do |s|
+spec                 = Gem::Specification.new do |s|
   s.name             = 'provisional'
   s.version          = Provisional::Version.to_s
   s.has_rdoc         = true
@@ -17,10 +17,8 @@ spec = Gem::Specification.new do |s|
   s.email            = 'mark@viget.com'
   s.homepage         = 'http://www.viget.com'
   s.files            = %w(README.rdoc Rakefile) + Dir.glob("{lib,test}/**/*")
-
-  # FIXME: to be written
-  # s.executables    = ['provisional']
-
+  s.executables      = ['provisional']
+  s.add_dependency('trollop', '>=1.10.2')
   # FIXME: there are no 2.3.0 gems yet
   # s.add_dependency('rails', '~> 2.3.0')
 end
