@@ -2,7 +2,7 @@ module Provisional
   module Version
     
     MAJOR = 0
-    MINOR = 1
+    MINOR = 9
     TINY  = 0
     
     def self.to_s # :nodoc:
