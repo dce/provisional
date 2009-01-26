@@ -3,18 +3,27 @@ require File.dirname(__FILE__) + '/../../lib/provisional/scm/git'
 
 class ProjectTest < Test::Unit::TestCase
 
+  def stub_git
+    git_stub = stub()
+    git_stub.expects(:init).returns('true')
+    git_stub.expects(:generate_rails).returns('true')
+    git_stub.expects(:checkin).returns('true')
+    Provisional::SCM::Git.expects(:new).returns(git_stub)
+  end
+
   def new_project(opts = {})
     opts = {:name => 'name', :template => 'viget', :rails => `which rails`.chomp, :scm => 'git'}.merge(opts)
     Provisional::Project.new(opts)
   end
 
   context 'A Project object' do
+    should 'call init, generate_rails and checkin' do
+      stub_git
+      new_project
+    end
+
     should 'find the template_path based on the template option' do
-      git_stub = stub()
-      git_stub.expects(:init).returns('true')
-      git_stub.expects(:generate_rails).returns('true')
-      git_stub.expects(:checkin).returns('true')
-      Provisional::SCM::Git.expects(:new).returns(git_stub)
+      stub_git
 
       expected = File.expand_path(File.join(File.dirname(__FILE__), '../../lib/provisional/templates/viget.rb'))
       assert_equal expected, new_project.options[:template_path]
