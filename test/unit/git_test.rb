@@ -34,6 +34,7 @@ class GitTest < Test::Unit::TestCase
     should 'have a checkin command' do
       steps = [
         "cd name",
+        "printf \"#{Provisional::IGNORE_FILES.collect{|f| f[0]+'/'+f[1]+'\n'}}\" >.gitignore",
         "git add .",
         "git commit -m 'Initial commit by Provisional'"
       ]
