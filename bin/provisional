@@ -4,6 +4,7 @@ require 'rubygems'
 require 'provisional'
 require 'provisional/version'
 require 'trollop'
+require 'active_support'
 
 opts = Trollop::options do
   version "Provisional #{Provisional::Version}"
@@ -13,12 +14,17 @@ opts = Trollop::options do
   opt :template, "Rails template to use", :type => String, :default => 'viget'
 end
 
-full_path_to_template = File.join(File.dirname(__FILE__),'..','lib','provisional','templates',"#{opts[:template]}.rb")
+opts[:template_path] = File.join(File.dirname(__FILE__),'..','lib','provisional','templates',"#{opts[:template]}.rb")
 
 Trollop::die(:name, "must be specified") unless opts[:name]
 Trollop::die(:scm, "is not supported: #{opts[:scm]}") unless %w(git svn).include?(opts[:scm])
 Trollop::die(:rails, "must be specified") if opts[:rails].to_s.empty?
 Trollop::die(:rails, "is not valid: #{opts[:rails]}") unless File.exist?(opts[:rails]) && File.executable?(opts[:rails])
-Trollop::die(:template, "is not valid: #{opts[:template]}") unless File.exist?(full_path_to_template)
+Trollop::die(:template, "is not valid: #{opts[:template]}") unless File.exist?(opts[:template_path])
 
-`#{opts[:rails]} #{opts[:name]} -m #{full_path_to_template}`
+require "provisional/scm/#{opts[:scm]}"
+scm = "Provisional::SCM::#{opts[:scm].classify}".constantize.new(opts)
+
+system scm.init
+system scm.generate_rails
+system scm.checkin
