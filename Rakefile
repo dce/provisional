@@ -17,8 +17,9 @@ spec                 = Gem::Specification.new do |s|
   s.email            = 'mark@viget.com'
   s.homepage         = 'http://www.viget.com'
   s.files            = %w(README.rdoc Rakefile) + Dir.glob("{lib,test}/**/*")
-  s.executables      = ['provisional']
-  s.add_dependency('trollop', '>=1.10.2')
+  s.executables      = %w(provisional provisional-github-helper)
+  s.add_dependency('mechanize', '>= 0.9.0')
+  s.add_dependency('trollop',   '~> 1.10.2')
   # FIXME: there are no 2.3.0 gems yet
   # s.add_dependency('rails', '~> 2.3.0')
 end

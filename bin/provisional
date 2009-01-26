@@ -11,6 +11,8 @@ options = Trollop::options do
   opt :scm, "SCM to use", :type => String, :default => 'git'
   opt :rails, "Path to rails generator script", :type => String, :default => `which rails`.chomp
   opt :template, "Rails template to use", :type => String, :default => 'viget'
+  opt :github_login, "Github login (only needed for github scm)", :type => String
+  opt :github_password, "Github password (only needed for github scm)", :type => String
 end
 
 Provisional::Project.new(options)
