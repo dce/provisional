@@ -51,11 +51,11 @@ The default viget template does the following:
 
 == Bugs
 
-Github support is based on mechanize, since Github's API doesn't support creating repositories yet.
+Github support is based on mechanize, since Github's official API doesn't support creating repositories yet.
 
 == TODO
 
-Support reading a rcfile or some other way to avoid having Github credentials on command lines.
+* Support reading a rcfile or some other way to avoid having Github credentials on command lines.
 
 == License
 
