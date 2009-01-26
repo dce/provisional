@@ -9,7 +9,7 @@ require 'active_support'
 opts = Trollop::options do
   version "Provisional #{Provisional::Version}"
   opt :name, "Name of the project", :type => String
-  opt :scm, "SCM to use (git or svn)", :type => String, :default => 'git'
+  opt :scm, "SCM to use", :type => String, :default => 'git'
   opt :rails, "Path to rails generator script", :type => String, :default => `which rails`.chomp
   opt :template, "Rails template to use", :type => String, :default => 'viget'
 end
