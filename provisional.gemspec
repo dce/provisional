@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email = %q{mark@viget.com}
   s.executables = ["provisional"]
   s.extra_rdoc_files = ["README.rdoc"]
-  s.files = ["README.rdoc", "Rakefile", "lib/provisional", "lib/provisional/scm", "lib/provisional/scm/git.rb", "lib/provisional/scm/svn.rb", "lib/provisional/templates", "lib/provisional/templates/viget.rb", "lib/provisional/version.rb", "lib/provisional.rb", "test/test_helper.rb", "test/unit", "test/unit/git_test.rb", "test/unit/svn_test.rb", "bin/provisional"]
+  s.files = ["README.rdoc", "Rakefile", "lib/provisional", "lib/provisional/scm", "lib/provisional/scm/git.rb", "lib/provisional/scm/svn.rb", "lib/provisional/scm/viget_git.rb", "lib/provisional/templates", "lib/provisional/templates/viget.rb", "lib/provisional/version.rb", "lib/provisional.rb", "test/test_helper.rb", "test/unit", "test/unit/git_test.rb", "test/unit/svn_test.rb", "bin/provisional"]
   s.has_rdoc = true
   s.homepage = %q{http://www.viget.com}
   s.rdoc_options = ["--main", "README.rdoc"]
