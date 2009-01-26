@@ -25,8 +25,8 @@ There are two Viget-specific SCM options which will only work on the Viget inter
                   --scm, -s <s>:   SCM to use (default: git)
                 --rails, -r <s>:   Path to rails generator script (default: first occurrence of rails in $PATH)
              --template, -t <s>:   Rails template to use (default: viget)
-         --github-login, -g <s>:   Github login
-      --github-password, -i <s>:   Github password
+         --github-login, -g <s>:   Github login (only needed for github scm)
+      --github-password, -i <s>:   Github password (only needed for github scm)
                   --version, -v:   Print version and exit
                      --help, -h:   Show this message
 
