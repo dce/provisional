@@ -3,16 +3,16 @@
 module Provisional
   module SCM
     class Svn
-      def initialize(opts)
-        @opts = opts
+      def initialize(options)
+        @options = options
       end
 
       def init
         cwd = Dir.getwd
         steps = [
-          "svnadmin create #{@opts[:name]}.repo",
-          "svn checkout file:///#{cwd}/#{@opts[:name]}.repo #{cwd}/#{@opts[:name]}",
-          "cd #{cwd}/#{@opts[:name]}",
+          "svnadmin create #{@options[:name]}.repo",
+          "svn checkout file:///#{cwd}/#{@options[:name]}.repo #{cwd}/#{@options[:name]}",
+          "cd #{cwd}/#{@options[:name]}",
           "mkdir branches tags trunk",
           "svn add *",
           "svn commit -m 'Structure by Provisional'"
@@ -22,15 +22,15 @@ module Provisional
 
       def generate_rails
         steps = [
-          "cd #{@opts[:name]}/trunk",
-          "#{@opts[:rails]} . -m #{@opts[:template_path]}"
+          "cd #{@options[:name]}/trunk",
+          "#{@options[:rails]} . -m #{@options[:template_path]}"
         ]
         steps.join(' && ')
       end
 
       def checkin
         steps = [
-          "cd #{@opts[:name]}/trunk",
+          "cd #{@options[:name]}/trunk",
           "svn add *",
           "svn commit -m 'Initial commit by Provisional'"
         ]

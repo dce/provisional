@@ -1,14 +1,14 @@
 module Provisional
   module SCM
     class Git
-      def initialize(opts)
-        @opts = opts
+      def initialize(options)
+        @options = options
       end
 
       def init
         steps = [
-          "mkdir -p #{@opts[:name]}",
-          "cd #{@opts[:name]}",
+          "mkdir -p #{@options[:name]}",
+          "cd #{@options[:name]}",
           "git init"
         ]
         steps.join(' && ')
@@ -16,15 +16,15 @@ module Provisional
 
       def generate_rails
         steps = [
-          "cd #{@opts[:name]}",
-          "#{@opts[:rails]} . -m #{@opts[:template_path]}"
+          "cd #{@options[:name]}",
+          "#{@options[:rails]} . -m #{@options[:template_path]}"
         ]
         steps.join(' && ')
       end
 
       def checkin
         steps = [
-          "cd #{@opts[:name]}",
+          "cd #{@options[:name]}",
           "git add .",
           "git commit -m 'Initial commit by Provisional'"
         ]
