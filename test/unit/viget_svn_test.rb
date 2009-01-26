@@ -35,6 +35,7 @@ class VigetSvnTest < Test::Unit::TestCase
       steps = [
         "cd name/trunk",
         "svn add *",
+        Provisional::IGNORE_FILES.collect{|f| "svn propset svn:ignore '#{f[1]}' #{f[0]}"},          
         "svn commit -m 'Initial commit by Provisional'"
       ]
       assert_equal steps.join(' && '), @scm.checkin

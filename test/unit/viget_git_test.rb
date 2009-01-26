@@ -40,6 +40,7 @@ class VigetGitTest < Test::Unit::TestCase
     should 'append a git push to the generate_rails command from the Git class' do
       steps = [
         "cd name",
+        "printf \"#{Provisional::IGNORE_FILES.collect{|f| f[0]+'/'+f[1]+'\n'}}\" >.gitignore",
         "git add .",
         "git commit -m 'Initial commit by Provisional'",
         "git push"
