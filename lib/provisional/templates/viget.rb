@@ -33,8 +33,7 @@ E0F'
 generate :viget_deployment
 
 # clean up
-run 'cp config/database.yml-sample config/database.yml'
-run 'rm -rf public/index.html log/* test/fixtures'
+run 'rm -rf public/index.html log/* test/fixtures config/database.yml'
 inside ('public/javascripts') do
   run 'rm -f dragdrop.js controls.js effects.js prototype.js'
 end
