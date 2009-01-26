@@ -15,8 +15,7 @@ class SvnTest < Test::Unit::TestCase
 
   context 'A Svn SCM object' do
     should 'have an init command' do
-      # cwd = File.dirname(__FILE__)
-      cwd = `pwd`.chomp
+      cwd = Dir.getwd
       steps = [
         "svnadmin create name.repo",
         "svn checkout file:///#{cwd}/name.repo #{cwd}/name",

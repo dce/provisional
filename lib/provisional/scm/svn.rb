@@ -8,7 +8,7 @@ module Provisional
       end
 
       def init
-        cwd = `pwd`.chomp
+        cwd = Dir.getwd
         steps = [
           "svnadmin create #{@opts[:name]}.repo",
           "svn checkout file:///#{cwd}/#{@opts[:name]}.repo #{cwd}/#{@opts[:name]}",
