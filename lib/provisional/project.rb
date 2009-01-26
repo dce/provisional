@@ -10,7 +10,7 @@ module Provisional
 
       raise ArgumentError, "must be specified" unless @options[:name]
       raise ArgumentError, "already exists: #{@options[:name]}" if File.exist?(@options[:name])
-      raise ArgumentError, "already exists: #{@options[:name]}.repo" if File.exist?("#{@options[:name]}.repo") && @options[:scm] == 'svn'
+      raise ArgumentError, "already exists: #{@options[:name]}.repo" if @options[:scm] == 'svn' && File.exist?("#{@options[:name]}.repo")
 
       begin
         require "provisional/scm/#{@options[:scm]}"
