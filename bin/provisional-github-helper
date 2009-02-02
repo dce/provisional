@@ -9,7 +9,7 @@ repository_name = ARGV[0]
 begin
   github_config = YAML.load_file(ARGV[1])
 rescue
-  raise ArgumentError, "could not be loaded: #{@options[:github]}"
+  raise ArgumentError, "could not be loaded: #{ARGV[1]}"
 end
 
 agent                                    = WWW::Mechanize.new
