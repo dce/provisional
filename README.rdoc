@@ -27,8 +27,7 @@ There are two Viget-specific SCM options which will only work on the Viget inter
                   --scm, -s <s>:   SCM to use (default: git)
                 --rails, -r <s>:   Path to rails generator script (default: first occurrence of rails in $PATH)
              --template, -t <s>:   Rails template to use (default: viget)
-         --github-login, -g <s>:   Github login (only needed for github scm)
-      --github-password, -i <s>:   Github password (only needed for github scm)
+               --github, -g <s>:   Github credential file (only needed for github scm; see below)
                   --version, -v:   Print version and exit
                      --help, -h:   Show this message
 
@@ -38,7 +37,7 @@ The SCM option can be one of the following ("project_name" refers to the value o
 * svn: creates an svn repository in the project_name.repo directory, and checks it out into the project_name directory
 * viget_git: creates a git repository in the project_name directory, creates git.lab.viget.com:/srv/git/project_name.git and adds it as origin/master (only works on the Viget internal network)
 * viget_svn: creates an svn repository at svn://svn.lab.viget.com/project_name, and checks it out into the project_name directory (only works on the Viget internal network)
-* github: creates a git repository in the project_name directory, creates project_name on Github using the specified username and password, and adds it as origin/master (not terribly secure and prone to breakage due to screen scraping; use sparingly)
+* github: creates a git repository in the project_name directory, creates project_name on Github using the specified credentials, and adds it as origin/master (not terribly secure and prone to breakage due to screen scraping; use sparingly)
 
 The default viget template does the following:
 
@@ -51,13 +50,14 @@ The default viget template does the following:
 * removes public/index.html, test/fixtures, prototype, and script.aculo.us
 * creates a SCM repository and checks the application in (pushing to origin/master if the viget_git or github SCM is used)
 
-== Bugs
+== Github
 
-Github support is based on mechanize, since Github's official API doesn't support creating repositories yet.
+To use Github, you will need to create a simple credential file in YAML format with your login and password on two separate lines, like this:
 
-== TODO
+    login: labcoat
+    password: hardhat
 
-* Support reading a rcfile or some other way to avoid having Github credentials on command lines.
+Obviously, since this file contains your password in clear text, you should keep it secure. This YAML file is used to prevent having to pass your login and password on Provisional's command line. If and when Github's API is extended to support creating repositories using token authentication, Provisional will be updated to do that instead. For now, Github support is based on mechanize, since Github's official API doesn't support creating repositories yet, and thus we need to use login and password.
 
 == License
 

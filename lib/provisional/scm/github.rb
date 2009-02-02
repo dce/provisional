@@ -5,7 +5,7 @@ module Provisional
     class Github < Provisional::SCM::Git
       def init
         steps = [
-          "provisional-github-helper #{@options[:name]} #{@options[:github_login]} #{@options[:github_password]}",
+          "provisional-github-helper #{@options[:name]} #{@options[:github]}",
           "mkdir -p #{@options[:name]}",
           "cd #{@options[:name]}",
           "git init",
