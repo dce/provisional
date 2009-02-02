@@ -8,7 +8,9 @@ In the future, Provisional may be expanded to create production and staging envi
 
 == Requirements
 
-Provisional requires Rails 2.3 to be useful. At this time, Rails 2.3 gems are not available, but when they do become available, Provisional will depend on them.
+Provisional requires Rails 2.3. As of the release of Provisional 1.0.0, Rails 2.3 is in its RC cycle and thus only available from the rubyonrails.org gem server:
+
+    sudo gem install rails --source http://gems.rubyonrails.org
 
 Provisional is only tested on Mac OS X. It should also work on Linux. It will not work on Windows.
 

@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{provisional}
-  s.version = "0.9.0"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mark Cornick"]
-  s.date = %q{2009-01-26}
+  s.date = %q{2009-02-02}
   s.email = %q{mark@viget.com}
   s.executables = ["provisional", "provisional-github-helper"]
   s.extra_rdoc_files = ["README.rdoc"]
@@ -25,12 +25,15 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<mechanize>, [">= 0.9.0"])
       s.add_runtime_dependency(%q<trollop>, ["~> 1.10.2"])
+      s.add_runtime_dependency(%q<rails>, ["~> 2.3.0"])
     else
       s.add_dependency(%q<mechanize>, [">= 0.9.0"])
       s.add_dependency(%q<trollop>, ["~> 1.10.2"])
+      s.add_dependency(%q<rails>, ["~> 2.3.0"])
     end
   else
     s.add_dependency(%q<mechanize>, [">= 0.9.0"])
     s.add_dependency(%q<trollop>, ["~> 1.10.2"])
+    s.add_dependency(%q<rails>, ["~> 2.3.0"])
   end
 end
