@@ -9,23 +9,23 @@ class GithubTest < Test::Unit::TestCase
       :name => 'name',
       :template_path => 'template_path',
       :rails => 'rails',
-      :github_login => 'github_login',
-      :github_password => 'github_password'
+      :github => 'yaml'
     }
     )
   end
 
   context 'A Github SCM object' do
     should 'have a different init command from the Git class' do
+      YAML.expects(:load_file).with('yaml').returns({'login' => 'login', 'password' => 'password'})
       steps = [
-        "provisional-github-helper name github_login github_password",
+        "provisional-github-helper name yaml",
         "mkdir -p name",
         "cd name",
         "git init",
         "touch .gitignore",
         "git add .gitignore",
         "git commit -m 'Structure by Provisional'",
-        "git remote add origin git.lab.viget.com:/srv/git/name.git",
+        "git remote add origin git@github.com:login/name.git",
         "git push origin master"
       ]
       assert_equal steps.join(' && '), @scm.init
