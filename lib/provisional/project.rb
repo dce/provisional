@@ -6,7 +6,12 @@ module Provisional
 
     def initialize(options)
       @options = options
-      @options[:template_path] = File.expand_path(File.join(File.dirname(__FILE__),'templates',"#{@options[:template]}.rb"))
+
+      if File.exist?(File.expand_path(@options[:template]))
+        @options[:template_path] = File.expand_path(@options[:template])
+      else
+        @options[:template_path] = File.expand_path(File.join(File.dirname(__FILE__),'templates',"#{@options[:template]}.rb"))
+      end
 
       raise ArgumentError, "must be specified" unless @options[:name]
       raise ArgumentError, "already exists: #{@options[:name]}" if File.exist?(@options[:name])

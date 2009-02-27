@@ -3,6 +3,8 @@ require File.dirname(__FILE__) + '/../../lib/provisional/scm/git'
 
 class ProjectTest < Test::Unit::TestCase
 
+  RAILS = `which rails`.chomp
+
   def stub_git
     git_stub = stub()
     git_stub.expects(:init).returns('true')
@@ -12,7 +14,7 @@ class ProjectTest < Test::Unit::TestCase
   end
 
   def new_project(opts = {})
-    opts = {:name => 'name', :template => 'viget', :rails => `which rails`.chomp, :scm => 'git'}.merge(opts)
+    opts = {:name => 'name', :template => 'viget', :rails => RAILS, :scm => 'git'}.merge(opts)
     Provisional::Project.new(opts)
   end
 
@@ -20,6 +22,16 @@ class ProjectTest < Test::Unit::TestCase
     should 'call init, generate_rails and checkin' do
       stub_git
       new_project
+    end
+
+    should 'be able to use a literal template path' do
+      stub_git
+      path_to_my_template = File.expand_path('my_template.rb')
+      File.expects(:exist?).with(path_to_my_template).times(2).returns(true)
+      File.expects(:exist?).with('name').returns(false)
+      File.expects(:exist?).with(RAILS).returns(true)
+      project = new_project(:template => 'my_template.rb')
+      assert_equal path_to_my_template, project.options[:template_path]
     end
 
     should 'find the template_path based on the template option' do
@@ -37,6 +49,7 @@ class ProjectTest < Test::Unit::TestCase
 
     should 'raise ArgumentError if name already exists' do
       File.expects(:exist?).with('name').returns(true)
+      File.expects(:exist?).with(File.expand_path('viget')).returns(false)
       assert_raise ArgumentError do
         new_project
       end
@@ -45,6 +58,7 @@ class ProjectTest < Test::Unit::TestCase
     should 'raise ArgumentError if name.repo already exists and scm is svn' do
       File.expects(:exist?).with('name').returns(false)
       File.expects(:exist?).with('name.repo').returns(true)
+      File.expects(:exist?).with(File.expand_path('viget')).returns(false)
       assert_raise ArgumentError do
         new_project(:scm => 'svn')
       end

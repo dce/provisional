@@ -39,7 +39,7 @@ The SCM option can be one of the following ("project_name" refers to the value o
 * viget_svn: creates an svn repository at svn://svn.lab.viget.com/project_name, and checks it out into the project_name directory (only works on the Viget internal network)
 * github: creates a git repository in the project_name directory, creates project_name on Github using the specified credentials, and adds it as origin/master (not terribly secure and prone to breakage due to screen scraping; use sparingly)
 
-The default viget template does the following:
+The template option can be either a literal path to a template file, or the name of one of the templates found in lib/provisional/templates (without the .rb suffix.) The default viget template does the following:
 
 * freezes edge rails
 * installs gems: mocha, factory_girl, shoulda
