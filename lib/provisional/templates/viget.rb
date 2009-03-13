@@ -1,13 +1,12 @@
 # rails new_app_name -m viget.rb
 
 # freeze rails
-run 'sed -i .bak -e "/^RAILS_GEM_VERSION/s/^/# /" config/environment.rb && rm config/environment.rb.bak'
-freeze!
+rake 'rails:freeze:gems'
 
 # install gems
-gem 'mocha', :version => '~> 0.9.2'
-gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com', :version => '~> 1.1.3'
-gem 'thoughtbot-shoulda', :lib => 'shoulda', :source => 'http://gems.github.com', :version => '~> 2.0.5'
+gem 'mocha', :version => '>= 0.9.5'
+gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com', :version => '>= 1.2.0'
+gem 'thoughtbot-shoulda', :lib => 'shoulda', :source => 'http://gems.github.com', :version => '>= 2.10.1'
 rake 'gems:install gems:unpack'
 
 # install plugins
