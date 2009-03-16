@@ -8,9 +8,7 @@ In the future, Provisional may be expanded to create production and staging envi
 
 == Requirements
 
-Provisional requires Rails 2.3. As of the release of Provisional 1.0.0, Rails 2.3 is in its RC cycle and thus only available from the rubyonrails.org gem server:
-
-    sudo gem install rails --source http://gems.rubyonrails.org
+Provisional requires Rails 2.3.0 or greater.
 
 Provisional is only tested on Mac OS X. It should also work on Linux. It will not work on Windows.
 
@@ -41,7 +39,7 @@ The SCM option can be one of the following ("project_name" refers to the value o
 
 The template option can be either a literal path to a template file, or the name of one of the templates found in lib/provisional/templates (without the .rb suffix.) The default viget template does the following:
 
-* freezes edge rails
+* freezes rails from currently installed gems
 * installs gems: mocha, factory_girl, shoulda
 * installs plugins: hoptoad_notifier, jrails, model_generator_with_factories, viget_deployment, vl_cruise_control
 * installs a .gitignore file, or sets svn properties, to ignore logs, temp files, sqlite3 databases, rcov reports, and database.yml
