@@ -4,6 +4,7 @@ require File.dirname(__FILE__) + '/../../lib/provisional/scm/git'
 class ProjectTest < Test::Unit::TestCase
 
   RAILS = `which rails`.chomp
+  DEFAULT_TEMPLATE_PATH = File.expand_path(File.join(File.dirname(__FILE__), '../../lib/provisional/templates/viget.rb'))
 
   def stub_git
     git_stub = stub()
@@ -36,9 +37,7 @@ class ProjectTest < Test::Unit::TestCase
 
     should 'find the template_path based on the template option' do
       stub_git
-
-      expected = File.expand_path(File.join(File.dirname(__FILE__), '../../lib/provisional/templates/viget.rb'))
-      assert_equal expected, new_project.options[:template_path]
+      assert_equal DEFAULT_TEMPLATE_PATH, new_project.options[:template_path]
     end
 
     should 'raise ArgumentError if name is not specified' do
@@ -50,6 +49,7 @@ class ProjectTest < Test::Unit::TestCase
     should 'raise ArgumentError if name already exists' do
       File.expects(:exist?).with('name').returns(true)
       File.expects(:exist?).with(File.expand_path('viget')).returns(false)
+      File.expects(:exist?).with(DEFAULT_TEMPLATE_PATH).returns(true)
       assert_raise ArgumentError do
         new_project
       end
@@ -58,6 +58,7 @@ class ProjectTest < Test::Unit::TestCase
     should 'raise ArgumentError if name.repo already exists and scm is svn' do
       File.expects(:exist?).with('name').returns(false)
       File.expects(:exist?).with('name.repo').returns(true)
+      File.expects(:exist?).with(DEFAULT_TEMPLATE_PATH).returns(true)
       File.expects(:exist?).with(File.expand_path('viget')).returns(false)
       assert_raise ArgumentError do
         new_project(:scm => 'svn')
@@ -91,6 +92,32 @@ class ProjectTest < Test::Unit::TestCase
     should 'raise ArgumentError if invalid template is specified' do
       assert_raise ArgumentError do
         new_project(:template => 'bogus')
+      end
+    end
+
+    should 'not raise ArgumentError if a valid http template url is specified' do
+      stub_git
+      assert_nothing_raised do
+        new_project(:template => 'http://example.com/')
+      end
+    end
+
+    should 'not raise ArgumentError if a valid https template url is specified' do
+      stub_git
+      assert_nothing_raised do
+        new_project(:template => 'https://example.com/')
+      end
+    end
+
+    should 'raise ArgumentError if a valid other template url is specified' do
+      assert_raise ArgumentError do
+        new_project(:template => 'ftp://example.com/')
+      end
+    end
+
+    should 'raise ArgumentError if an invalid url is specified' do
+      assert_raise ArgumentError do
+        new_project(:template => 'bogus://awesome.pants/')
       end
     end
   end
