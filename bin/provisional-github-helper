@@ -5,15 +5,10 @@ require 'yaml'
 
 repository_name = ARGV[0]
 
-begin
-  github_config = YAML.load_file(ARGV[1])
-rescue
-  raise ArgumentError, "could not be loaded: #{ARGV[1]}"
-end
-
 Net::HTTP.post_form URI.parse('http://github.com/repositories'), {
-  'login' => github_config['login'],
-  'token' => github_config['token'],
+  # TODO: figure out a better way of getting this
+  'login' => `git config --get github.user`.chomp,
+  'token' => `git config --get github.token`.chomp,
   'repository[name]' => repository_name,
   'repository[description]' => repository_name
 }

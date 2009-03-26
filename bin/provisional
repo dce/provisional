@@ -5,12 +5,11 @@ require 'provisional'
 require 'trollop'
 
 options = Trollop::options do
-  version "1.2.3"
+  # version "1.2.4"
   opt :name, "Name of the project", :type => String
   opt :scm, "SCM to use", :type => String, :default => 'git'
   opt :rails, "Path to rails generator script", :type => String, :default => `which rails`.chomp
   opt :template, "Rails template to use", :type => String, :default => 'viget'
-  opt :github, "Github credential file (only needed for github scm; see README)", :type => String
 end
 
 Provisional::Project.new(options)
