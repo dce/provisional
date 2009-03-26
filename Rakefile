@@ -60,7 +60,7 @@ begin
   namespace :rubyforge do
     
     desc "Release gem and RDoc documentation to RubyForge"
-    task :release => ["rubyforge:release:gem", "rubyforge:release:docs"]
+    task :release => ["rubyforge:release:gem"]
     
     namespace :release do
       desc "Publish RDoc to RubyForge."
