@@ -10,7 +10,9 @@ begin
     gem.homepage = "http://github.com/vigetlabs/provisional"
     gem.authors = ["Mark Cornick"]
     gem.rubyforge_project = "viget"
-  
+    gem.add_dependency 'trollop', '>= 1.10.2'
+    gem.add_dependency 'rails', '>= 2.3.0'
+
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError

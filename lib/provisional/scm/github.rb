@@ -1,11 +1,14 @@
 require 'provisional/scm/git'
 require 'yaml'
+require 'rubygems'
+require 'git'
 
 module Provisional
   module SCM
     class Github < Provisional::SCM::Git
       def init
 
+        
         # TODO: figure out a better way of getting this
         github_login = `git config --get github.user`.chomp
 
