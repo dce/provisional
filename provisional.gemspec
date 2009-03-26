@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/vigetlabs/provisional}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubyforge_project = %q{vigetlabs}
+  s.rubyforge_project = %q{viget}
   s.rubygems_version = %q{1.3.1}
   s.summary = %q{Automation for new Rails Projects}
 
