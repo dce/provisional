@@ -2,11 +2,10 @@
 
 require 'rubygems'
 require 'provisional'
-require 'provisional/version'
 require 'trollop'
 
 options = Trollop::options do
-  version "Provisional #{Provisional::Version}"
+  version "1.2.3"
   opt :name, "Name of the project", :type => String
   opt :scm, "SCM to use", :type => String, :default => 'git'
   opt :rails, "Path to rails generator script", :type => String, :default => `which rails`.chomp
