@@ -35,7 +35,7 @@ The SCM option can be one of the following ("project_name" refers to the value o
 * svn: creates an svn repository in the project_name.repo directory, and checks it out into the project_name directory
 * viget_git: creates a git repository in the project_name directory, creates git.lab.viget.com:/srv/git/project_name.git and adds it as origin/master (only works on the Viget internal network)
 * viget_svn: creates an svn repository at svn://svn.lab.viget.com/project_name, and checks it out into the project_name directory (only works on the Viget internal network)
-* github: creates a git repository in the project_name directory, creates project_name on Github using the specified credentials, and adds it as origin/master (not terribly secure and prone to breakage due to screen scraping; use sparingly)
+* github: creates a git repository in the project_name directory, creates project_name on Github using the specified credentials, and adds it as origin/master
 
 The template option can be either a literal path to a template file, a URL for a template on a remote server, or the name of one of the templates found in lib/provisional/templates (without the .rb suffix.) The default viget template does the following:
 
@@ -53,9 +53,9 @@ The template option can be either a literal path to a template file, a URL for a
 To use Github, you will need to create a simple credential file in YAML format with your login and password on two separate lines, like this:
 
     login: labcoat
-    password: hardhat
+    token: f1a26b61a055a501cffda00000fc9782
 
-Obviously, since this file contains your password in clear text, you should keep it secure. This YAML file is used to prevent having to pass your login and password on Provisional's command line. If and when Github's API is extended to support creating repositories using token authentication, Provisional will be updated to do that instead. For now, Github support is based on mechanize, since Github's official API doesn't support creating repositories yet, and thus we need to use login and password.
+You can find your token on your GitHub account page.
 
 == License
 
