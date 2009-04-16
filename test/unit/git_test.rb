@@ -14,6 +14,10 @@ class GitTest < Test::Unit::TestCase
   end
 
   context 'A Git SCM object' do
+    should 'know how to generate a gitignore file' do
+      assert_equal Provisional::IGNORE_FILES.inject(''){|gitignore, duple| gitignore << "/#{duple[0]}/#{duple[1]}\n"}, @scm.gitignore
+    end
+
     should 'have an init method' do
       FileUtils.expects(:mkdir_p).with('name')
       Dir.expects(:chdir).with('name')
@@ -28,11 +32,12 @@ class GitTest < Test::Unit::TestCase
     end
 
     should 'have a checkin method' do
-      # TODO: gitignore
       repo_stub = stub()
       repo_stub.expects(:add).with('.')
       repo_stub.expects(:commit).with('Initial commit by Provisional')
       Git.expects(:open).returns(repo_stub)
+      Dir.expects(:chdir)
+      File.expects(:open).with('.gitignore', 'w')
       @scm.checkin
     end
   end

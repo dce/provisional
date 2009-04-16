@@ -8,6 +8,10 @@ module Provisional
         @options = options
       end
 
+      def gitignore
+        Provisional::IGNORE_FILES.inject(''){|gitignore, duple| gitignore << "/#{duple[0]}/#{duple[1]}\n"}
+      end
+
       def init
         FileUtils.mkdir_p @options[:name]
         Dir.chdir @options[:name]
@@ -22,7 +26,10 @@ module Provisional
 
       def checkin
         repo = ::Git.open @options[:path]
-        # TODO: gitignore
+        Dir.chdir @options[:path]
+        File.open('.gitignore', 'w') do |f|
+          f.puts gitignore
+        end
         repo.add '.'
         repo.commit 'Initial commit by Provisional'
       end
