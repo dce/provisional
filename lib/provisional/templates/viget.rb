@@ -11,7 +11,7 @@ rake 'gems:install gems:unpack'
 
 # install plugins
 plugin 'hoptoad_notifier', :git => 'git://github.com/thoughtbot/hoptoad_notifier.git'
-plugin 'jrails', :svn => 'http://ennerchi.googlecode.com/svn/trunk/plugins/jrails'
+plugin 'jrails', :git => 'git://github.com/aaronchi/jrails.git'
 plugin 'model_generator_with_factories', :git => 'git://github.com/vigetlabs/model_generator_with_factories.git'
 plugin 'viget_deployment', :git => 'git://github.com/vigetlabs/viget_deployment.git'
 plugin 'vl_cruise_control', :git => 'git://github.com/vigetlabs/vl_cruise_control.git'
@@ -24,3 +24,4 @@ run 'rm -rf public/index.html log/* test/fixtures config/database.yml'
 inside ('public/javascripts') do
   run 'rm -f dragdrop.js controls.js effects.js prototype.js'
 end
+rake 'jrails:install:javascripts'
