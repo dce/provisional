@@ -14,31 +14,26 @@ class GitTest < Test::Unit::TestCase
   end
 
   context 'A Git SCM object' do
-    should 'have an init command' do
-      steps = [
-        "mkdir -p name",
-        "cd name",
-        "git init"
-      ]
-      assert_equal steps.join(' && '), @scm.init
+    should 'have an init method' do
+      FileUtils.expects(:mkdir_p).with('name')
+      Dir.expects(:chdir).with('name')
+      Git.expects(:init)
+      @scm.init
     end
 
-    should 'have a generate_rails command' do
-      steps = [
-        "cd name",
-        "rails . -m template_path"
-      ]
-      assert_equal steps.join(' && '), @scm.generate_rails
+    should 'have a generate_rails method' do
+      Dir.expects(:chdir)
+      @scm.expects(:system).with("rails . -m template_path")
+      @scm.generate_rails
     end
 
-    should 'have a checkin command' do
-      steps = [
-        "cd name",
-        "printf \"#{Provisional::IGNORE_FILES.collect{|f| f[0]+'/'+f[1]+'\n'}}\" >.gitignore",
-        "git add .",
-        "git commit -m 'Initial commit by Provisional'"
-      ]
-      assert_equal steps.join(' && '), @scm.checkin
+    should 'have a checkin method' do
+      # TODO: gitignore
+      repo_stub = stub()
+      repo_stub.expects(:add).with('.')
+      repo_stub.expects(:commit).with('Initial commit by Provisional')
+      Git.expects(:open).returns(repo_stub)
+      @scm.checkin
     end
   end
 end

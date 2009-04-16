@@ -34,9 +34,9 @@ module Provisional
 
       scm_class = "Provisional::SCM::#{@options[:scm].classify}".constantize
       scm = scm_class.new(@options)
-      system scm.init
-      system scm.generate_rails
-      system scm.checkin
+      scm.init
+      scm.generate_rails
+      scm.checkin
     end
 
     def is_valid_url?(url)
