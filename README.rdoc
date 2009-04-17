@@ -10,7 +10,7 @@ In the future, Provisional may be expanded to create production and staging envi
 
 Provisional requires Rails 2.3.0 or greater.
 
-Provisional is only tested on Mac OS X. It should also work on Linux. It will not work on Windows.
+Provisional is only tested on Mac OS X. It should also work on Linux. It is not tested or supported on Windows.
 
 == Installation
 
