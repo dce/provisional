@@ -1,5 +1,8 @@
 require 'fileutils'
 require 'git'
+require 'rails/version'
+require 'rails_generator'
+require 'rails_generator/scripts/generate'
 
 module Provisional
   module SCM
@@ -20,8 +23,10 @@ module Provisional
       end
 
       def generate_rails
+        generator_options = ['.', '-m', @options[:template_path]]
         Dir.chdir @options[:path]
-        system "#{@options[:rails]} . -m #{@options[:template_path]}"
+        Rails::Generator::Base.use_application_sources!
+        Rails::Generator::Scripts::Generate.new.run generator_options, :generator => 'app'
       end
 
       def checkin

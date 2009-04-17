@@ -27,7 +27,10 @@ class GitTest < Test::Unit::TestCase
 
     should 'have a generate_rails method' do
       Dir.expects(:chdir)
-      @scm.expects(:system).with("rails . -m template_path")
+      Rails::Generator::Base.expects(:use_application_sources!)
+      generator_stub = stub()
+      generator_stub.expects(:run).with(%w(. -m template_path), :generator => 'app')
+      Rails::Generator::Scripts::Generate.expects(:new).returns(generator_stub)
       @scm.generate_rails
     end
 
