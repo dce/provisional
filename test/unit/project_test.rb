@@ -39,6 +39,14 @@ class ProjectTest < Test::Unit::TestCase
     assert_equal DEFAULT_TEMPLATE_PATH, new_project.options[:template_path]
   end
 
+  def test_should_raise_argumenterror_if_invalid_template_url_is_specified
+    bogus_url = 'bagel://pants/wizard'
+    URI.expects(:parse).with(bogus_url).raises(URI::InvalidURIError)
+    assert_raise ArgumentError do
+      project = new_project(:template => bogus_url)
+    end
+  end
+
   def test_should_raise_argumenterror_if_name_is_not_specified
     assert_raise ArgumentError do
       new_project(:name => nil)
