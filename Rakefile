@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "provisional"
     gem.summary = "Automation for new Rails Projects"
-    gem.email = "markk@viget.com"
+    gem.email = "mark@viget.com"
     gem.homepage = "http://github.com/vigetlabs/provisional"
     gem.authors = ["Mark Cornick"]
     gem.rubyforge_project = "viget"
