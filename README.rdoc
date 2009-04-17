@@ -12,8 +12,6 @@ Provisional requires Rails 2.3.0 or greater.
 
 Provisional is only tested on Mac OS X. It should also work on Linux. It will not work on Windows.
 
-There are two Viget-specific SCM options which will only work on the Viget internal network. Viget developers will also need to do some one-time setup to use these. Ask Mark for details.
-
 == Installation
 
     sudo gem install provisional
@@ -31,21 +29,20 @@ There are two Viget-specific SCM options which will only work on the Viget inter
 The SCM option can be one of the following ("project_name" refers to the value of the --name option):
 
 * git: creates a git repository in the project_name directory
-* svn: creates an svn repository in the project_name.repo directory, and checks it out into the project_name directory
-* viget_git: creates a git repository in the project_name directory, creates git.lab.viget.com:/srv/git/project_name.git and adds it as origin/master (only works on the Viget internal network)
-* viget_svn: creates an svn repository at svn://svn.lab.viget.com/project_name, and checks it out into the project_name directory (only works on the Viget internal network)
-* github: creates a git repository in the project_name directory, creates project_name on GitHub using the specified credentials, and adds it as origin/master (see section below about required Git configuration)
+* github: creates a git repository in the project_name directory, creates project_name on GitHub using the specified credentials, and adds it as origin (see section below about required Git configuration)
+
+(Subversion and Viget-specific SCM's were removed in Provisional 2.0.0. They may return at a later date.)
 
 The template option can be either a literal path to a template file, a URL for a template on a remote server, or the name of one of the templates found in lib/provisional/templates (without the .rb suffix.) The default viget template does the following:
 
 * freezes rails from currently installed gems
 * installs gems: mocha, factory_girl, shoulda
 * installs plugins: hoptoad_notifier, jrails, model_generator_with_factories, viget_deployment, vl_cruise_control
-* installs a .gitignore file, or sets svn properties, to ignore logs, temp files, sqlite3 databases, rcov reports, and database.yml
+* installs a .gitignore file to ignore logs, temp files, sqlite3 databases, rcov reports, and database.yml
 * generates Capistrano configuration with viget_deployment
 * copies database.yml to database.yml-sample
 * removes public/index.html, test/fixtures, prototype, and script.aculo.us
-* creates a SCM repository and checks the application in (pushing to origin/master if the viget_git or github SCM is used)
+* creates a SCM repository and checks the application in (pushing to origin if the github SCM is used)
 
 == GitHub
 
