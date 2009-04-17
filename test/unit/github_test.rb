@@ -2,10 +2,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 require File.dirname(__FILE__) + '/../../lib/provisional/scm/github'
 
 class GithubTest < Test::Unit::TestCase
-
-  # TODO: mock/stub this
-  GITHUB_LOGIN = `git config --get github.user`.chomp
-
   def setup
     @scm = Provisional::SCM::Github.new(
     {
@@ -17,39 +13,37 @@ class GithubTest < Test::Unit::TestCase
   end
 
   context 'A Github SCM object' do
-    should 'have a different init command from the Git class' do
-      # YAML.expects(:load_file).with('yaml').returns({'login' => 'login', 'password' => 'password'})
-      steps = [
-        "provisional-github-helper name",
-        "mkdir -p name",
-        "cd name",
-        "git init",
-        "touch .gitignore",
-        "git add .gitignore",
-        "git commit -m 'Structure by Provisional'",
-        "git remote add origin git@github.com:#{GITHUB_LOGIN}/name.git",
-        "git push origin master"
-      ]
-      assert_equal steps.join(' && '), @scm.init
+    should 'know how to generate a gitignore file' do
+      assert_equal Provisional::IGNORE_FILES.inject(''){|gitignore, duple| gitignore << "/#{duple[0]}/#{duple[1]}\n"}, @scm.gitignore
     end
 
-    should 'have the same generate_rails command as the Git class' do
-      steps = [
-        "cd name",
-        "rails . -m template_path"
-      ]
-      assert_equal steps.join(' && '), @scm.generate_rails
+    should 'have an init method' do
+      FileUtils.expects(:mkdir_p).with('name')
+      Dir.expects(:chdir).with('name')
+      Git.expects(:init)
+      @scm.init
     end
 
-    should 'append a git push to the generate_rails command from the Git class' do
-      steps = [
-        "cd name",
-        "printf \"#{Provisional::IGNORE_FILES.collect{|f| f[0]+'/'+f[1]+'\n'}}\" >.gitignore",
-        "git add .",
-        "git commit -m 'Initial commit by Provisional'",
-        "git push"
-      ]
-      assert_equal steps.join(' && '), @scm.checkin
+    should 'have a generate_rails method' do
+      Dir.expects(:chdir)
+      @scm.expects(:system).with("rails . -m template_path")
+      @scm.generate_rails
+    end
+
+    should 'have a checkin method' do
+      repo_stub = stub()
+      repo_stub.expects(:add).with('.')
+      repo_stub.expects(:commit).with('Initial commit by Provisional')
+      repo_stub.expects(:config).with('github.user').returns('user')
+      repo_stub.expects(:config).with('github.token').returns('token')
+      repo_stub.expects(:add_remote)
+      repo_stub.expects(:push)
+      
+      Git.expects(:open).returns(repo_stub)
+      Dir.expects(:chdir)
+      File.expects(:open).with('.gitignore', 'w')
+
+      @scm.checkin
     end
   end
 end

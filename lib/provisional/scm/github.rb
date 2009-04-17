@@ -1,28 +1,20 @@
 require 'provisional/scm/git'
+require 'net/http'
 
 module Provisional
   module SCM
     class Github < Provisional::SCM::Git
-      def init
-        # TODO: figure out a better way of getting this
-        github_login = `git config --get github.user`.chomp
-
-        steps = [
-          "provisional-github-helper #{@options[:name]}",
-          "mkdir -p #{@options[:name]}",
-          "cd #{@options[:name]}",
-          "git init",
-          "touch .gitignore",
-          "git add .gitignore",
-          "git commit -m 'Structure by Provisional'",
-          "git remote add origin git@github.com:#{github_login}/#{@options[:name]}.git",
-          "git push origin master"
-        ]
-        steps.join(' && ')
-      end
-
       def checkin
-        super + ' && git push'
+        repo = super
+        github_user = repo.config 'github.user'
+        github_token = repo.config 'github.token'
+        Net::HTTP.post_form URI.parse('http://github.com/api/v2/yaml/repos/create'), {
+          'login' => github_user,
+          'token' => github_token,
+          'name' => @options[:name]
+        }
+        repo.add_remote('origin', "git@github.com:#{github_user}/#{@options[:name]}.git")
+        repo.push
       end
     end
   end

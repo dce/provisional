@@ -32,6 +32,7 @@ module Provisional
         end
         repo.add '.'
         repo.commit 'Initial commit by Provisional'
+        repo
       end
     end
   end
