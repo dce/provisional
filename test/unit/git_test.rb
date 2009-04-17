@@ -39,7 +39,9 @@ class GitTest < Test::Unit::TestCase
     repo_stub.expects(:commit).with('Initial commit by Provisional')
     Git.expects(:open).returns(repo_stub)
     Dir.expects(:chdir)
-    File.expects(:open).with('.gitignore', 'w')
+    gitignore_file = stub()
+    gitignore_file.expects(:puts).with(@scm.gitignore)
+    File.expects(:open).with('.gitignore', 'w').yields(gitignore_file)
     @scm.checkin
   end
 end
