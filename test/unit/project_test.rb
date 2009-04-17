@@ -19,106 +19,104 @@ class ProjectTest < Test::Unit::TestCase
     Provisional::Project.new(opts)
   end
 
-  context 'A Project object' do
-    should 'call init, generate_rails and checkin' do
-      stub_git
+  def test_new_project_should_call_init_generate_rails_and_checkin
+    stub_git
+    new_project
+  end
+
+  def test_should_be_able_to_use_a_literal_template_path
+    stub_git
+    path_to_my_template = File.expand_path('my_template.rb')
+    File.expects(:exist?).with(path_to_my_template).times(2).returns(true)
+    File.expects(:exist?).with('name').returns(false)
+    File.expects(:exist?).with(RAILS).returns(true)
+    project = new_project(:template => 'my_template.rb')
+    assert_equal path_to_my_template, project.options[:template_path]
+  end
+
+  def test_should_find_the_template_path_based_on_the_template_option
+    stub_git
+    assert_equal DEFAULT_TEMPLATE_PATH, new_project.options[:template_path]
+  end
+
+  def test_should_raise_argumenterror_if_name_is_not_specified
+    assert_raise ArgumentError do
+      new_project(:name => nil)
+    end
+  end
+
+  def test_should_raise_argumenterror_if_name_already_exists
+    File.expects(:exist?).with('name').returns(true)
+    File.expects(:exist?).with(File.expand_path('viget')).returns(false)
+    File.expects(:exist?).with(DEFAULT_TEMPLATE_PATH).returns(true)
+    assert_raise ArgumentError do
       new_project
     end
+  end
 
-    should 'be able to use a literal template path' do
-      stub_git
-      path_to_my_template = File.expand_path('my_template.rb')
-      File.expects(:exist?).with(path_to_my_template).times(2).returns(true)
-      File.expects(:exist?).with('name').returns(false)
-      File.expects(:exist?).with(RAILS).returns(true)
-      project = new_project(:template => 'my_template.rb')
-      assert_equal path_to_my_template, project.options[:template_path]
+  def test_should_raise_argumenterror_if_namedotrepo_already_exists_and_scm_is_svn
+    File.expects(:exist?).with('name').returns(false)
+    File.expects(:exist?).with('name.repo').returns(true)
+    File.expects(:exist?).with(DEFAULT_TEMPLATE_PATH).returns(true)
+    File.expects(:exist?).with(File.expand_path('viget')).returns(false)
+    assert_raise ArgumentError do
+      new_project(:scm => 'svn')
     end
+  end
 
-    should 'find the template_path based on the template option' do
-      stub_git
-      assert_equal DEFAULT_TEMPLATE_PATH, new_project.options[:template_path]
+  def test_should_raise_argumenterror_if_unsupported_scm_is_specified
+    assert_raise ArgumentError do
+      new_project(:scm => 'bogus')
     end
+  end
 
-    should 'raise ArgumentError if name is not specified' do
-      assert_raise ArgumentError do
-        new_project(:name => nil)
-      end
+  def test_should_raise_argumenterror_if_no_scm_is_specified
+    assert_raise ArgumentError do
+      new_project(:scm => nil)
     end
+  end
 
-    should 'raise ArgumentError if name already exists' do
-      File.expects(:exist?).with('name').returns(true)
-      File.expects(:exist?).with(File.expand_path('viget')).returns(false)
-      File.expects(:exist?).with(DEFAULT_TEMPLATE_PATH).returns(true)
-      assert_raise ArgumentError do
-        new_project
-      end
+  def test_should_raise_argumenterror_if_no_rails_is_specified
+    assert_raise ArgumentError do
+      new_project(:rails => nil)
     end
+  end
 
-    should 'raise ArgumentError if name.repo already exists and scm is svn' do
-      File.expects(:exist?).with('name').returns(false)
-      File.expects(:exist?).with('name.repo').returns(true)
-      File.expects(:exist?).with(DEFAULT_TEMPLATE_PATH).returns(true)
-      File.expects(:exist?).with(File.expand_path('viget')).returns(false)
-      assert_raise ArgumentError do
-        new_project(:scm => 'svn')
-      end
+  def test_should_raise_argumenterror_if_invalid_rails_is_specified
+    assert_raise ArgumentError do
+      new_project(:rails => 'bogus')
     end
+  end
 
-    should 'raise ArgumentError if unsupported scm is specified' do
-      assert_raise ArgumentError do
-        new_project(:scm => 'bogus')
-      end
+  def test_should_raise_argumenterror_if_invalid_template_is_specified
+    assert_raise ArgumentError do
+      new_project(:template => 'bogus')
     end
+  end
 
-    should 'raise ArgumentError if no scm is specified' do
-      assert_raise ArgumentError do
-        new_project(:scm => nil)
-      end
+  def test_should_not_raise_argumenterror_if_a_valid_http_template_url_is_specified
+    stub_git
+    assert_nothing_raised do
+      new_project(:template => 'http://example.com/')
     end
+  end
 
-    should 'raise ArgumentError if no rails is specified' do
-      assert_raise ArgumentError do
-        new_project(:rails => nil)
-      end
+  def test_should_not_raise_argumenterror_if_a_valid_https_template_url_is_specified
+    stub_git
+    assert_nothing_raised do
+      new_project(:template => 'https://example.com/')
     end
+  end
 
-    should 'raise ArgumentError if invalid rails is specified' do
-      assert_raise ArgumentError do
-        new_project(:rails => 'bogus')
-      end
+  def test_should_raise_argumenterror_if_a_valid_other_template_url_is_specified
+    assert_raise ArgumentError do
+      new_project(:template => 'ftp://example.com/')
     end
+  end
 
-    should 'raise ArgumentError if invalid template is specified' do
-      assert_raise ArgumentError do
-        new_project(:template => 'bogus')
-      end
-    end
-
-    should 'not raise ArgumentError if a valid http template url is specified' do
-      stub_git
-      assert_nothing_raised do
-        new_project(:template => 'http://example.com/')
-      end
-    end
-
-    should 'not raise ArgumentError if a valid https template url is specified' do
-      stub_git
-      assert_nothing_raised do
-        new_project(:template => 'https://example.com/')
-      end
-    end
-
-    should 'raise ArgumentError if a valid other template url is specified' do
-      assert_raise ArgumentError do
-        new_project(:template => 'ftp://example.com/')
-      end
-    end
-
-    should 'raise ArgumentError if an invalid url is specified' do
-      assert_raise ArgumentError do
-        new_project(:template => 'bogus://awesome.pants/')
-      end
+  def test_should_raise_argumenterror_if_an_invalid_url_is_specified
+    assert_raise ArgumentError do
+      new_project(:template => 'bogus://awesome.pants/')
     end
   end
 end

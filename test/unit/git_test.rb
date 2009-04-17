@@ -13,35 +13,33 @@ class GitTest < Test::Unit::TestCase
     )
   end
 
-  context 'A Git SCM object' do
-    should 'know how to generate a gitignore file' do
-      assert_equal Provisional::IGNORE_FILES.inject(''){|gitignore, duple| gitignore << "/#{duple[0]}/#{duple[1]}\n"}, @scm.gitignore
-    end
+  def test_gitignore
+    assert_equal Provisional::IGNORE_FILES.inject(''){|gitignore, duple| gitignore << "/#{duple[0]}/#{duple[1]}\n"}, @scm.gitignore
+  end
 
-    should 'have an init method' do
-      FileUtils.expects(:mkdir_p).with('name')
-      Dir.expects(:chdir).with('name')
-      Git.expects(:init)
-      @scm.init
-    end
+  def test_init
+    FileUtils.expects(:mkdir_p).with('name')
+    Dir.expects(:chdir).with('name')
+    Git.expects(:init)
+    @scm.init
+  end
 
-    should 'have a generate_rails method' do
-      Dir.expects(:chdir)
-      Rails::Generator::Base.expects(:use_application_sources!)
-      generator_stub = stub()
-      generator_stub.expects(:run).with(%w(. -m template_path), :generator => 'app')
-      Rails::Generator::Scripts::Generate.expects(:new).returns(generator_stub)
-      @scm.generate_rails
-    end
+  def test_generate_rails
+    Dir.expects(:chdir)
+    Rails::Generator::Base.expects(:use_application_sources!)
+    generator_stub = stub()
+    generator_stub.expects(:run).with(%w(. -m template_path), :generator => 'app')
+    Rails::Generator::Scripts::Generate.expects(:new).returns(generator_stub)
+    @scm.generate_rails
+  end
 
-    should 'have a checkin method' do
-      repo_stub = stub()
-      repo_stub.expects(:add).with('.')
-      repo_stub.expects(:commit).with('Initial commit by Provisional')
-      Git.expects(:open).returns(repo_stub)
-      Dir.expects(:chdir)
-      File.expects(:open).with('.gitignore', 'w')
-      @scm.checkin
-    end
+  def test_checkin
+    repo_stub = stub()
+    repo_stub.expects(:add).with('.')
+    repo_stub.expects(:commit).with('Initial commit by Provisional')
+    Git.expects(:open).returns(repo_stub)
+    Dir.expects(:chdir)
+    File.expects(:open).with('.gitignore', 'w')
+    @scm.checkin
   end
 end
