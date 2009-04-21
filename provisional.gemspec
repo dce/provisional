@@ -2,16 +2,16 @@
 
 Gem::Specification.new do |s|
   s.name = %q{provisional}
-  s.version = "2.0.1"
+  s.version = "2.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mark Cornick"]
-  s.date = %q{2009-04-17}
+  s.date = %q{2009-04-21}
   s.default_executable = %q{provisional}
   s.email = %q{mark@viget.com}
   s.executables = ["provisional"]
   s.extra_rdoc_files = ["README.rdoc"]
-  s.files = ["README.rdoc", "VERSION.yml", "bin/provisional", "lib/provisional", "lib/provisional/project.rb", "lib/provisional/scm", "lib/provisional/scm/git.rb", "lib/provisional/scm/github.rb", "lib/provisional/templates", "lib/provisional/templates/viget.rb", "lib/provisional.rb", "lib/tasks", "test/fixtures", "test/functional", "test/integration", "test/performance", "test/test_helper.rb", "test/unit", "test/unit/git_test.rb", "test/unit/github_test.rb", "test/unit/project_test.rb"]
+  s.files = ["README.rdoc", "VERSION.yml", "bin/provisional", "lib/provisional", "lib/provisional/project.rb", "lib/provisional/scm", "lib/provisional/scm/git.rb", "lib/provisional/scm/github.rb", "lib/provisional/templates", "lib/provisional/templates/viget.rb", "lib/provisional.rb", "test/test_helper.rb", "test/unit", "test/unit/git_test.rb", "test/unit/github_test.rb", "test/unit/project_test.rb"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/vigetlabs/provisional}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
