@@ -12,7 +12,7 @@ module Provisional
       end
 
       def gitignore
-        Provisional::IGNORE_FILES.inject(''){|gitignore, duple| gitignore << "/#{duple[0]}/#{duple[1]}\n"}
+        Provisional::IGNORE_FILES.join("\n")
       end
 
       def init

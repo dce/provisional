@@ -14,7 +14,7 @@ class GitTest < Test::Unit::TestCase
   end
 
   def test_gitignore
-    assert_equal Provisional::IGNORE_FILES.inject(''){|gitignore, duple| gitignore << "/#{duple[0]}/#{duple[1]}\n"}, @scm.gitignore
+    assert_equal Provisional::IGNORE_FILES.join("\n"), @scm.gitignore
   end
 
   def test_init
