@@ -20,8 +20,16 @@ plugin 'vl_cruise_control', :git => 'git://github.com/vigetlabs/vl_cruise_contro
 generate :viget_deployment
 
 # clean up
-run 'rm -rf public/index.html log/* test/fixtures config/database.yml'
-inside ('public/javascripts') do
+run 'rm -rf public/images/rails.png log/* test/fixtures config/database.yml'
+inside 'public' do
+  run 'rm -f index.html favicon.ico robots.txt'
+end
+inside 'public/javascripts' do
   run 'rm -f dragdrop.js controls.js effects.js prototype.js'
 end
+
+# install jrails javascripts
 rake 'jrails:install:javascripts'
+
+# setup shoulda rake tasks
+file 'lib/tasks/shoulda.rake', %q[require 'shoulda/tasks']
