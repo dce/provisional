@@ -22,12 +22,16 @@ Gem::Specification.new do |s|
     "lib/provisional/project.rb",
     "lib/provisional/scm/git.rb",
     "lib/provisional/scm/github.rb",
+    "lib/provisional/scm/svn.rb",
     "lib/provisional/scm/unfuddle.rb",
+    "lib/provisional/scm/unfuddle_svn.rb",
     "lib/provisional/templates/viget.rb",
     "test/test_helper.rb",
     "test/unit/git_test.rb",
     "test/unit/github_test.rb",
     "test/unit/project_test.rb",
+    "test/unit/svn_test.rb",
+    "test/unit/unfuddle_svn_test.rb",
     "test/unit/unfuddle_test.rb"
   ]
   s.has_rdoc = true
@@ -42,6 +46,8 @@ Gem::Specification.new do |s|
     "test/unit/git_test.rb",
     "test/unit/github_test.rb",
     "test/unit/project_test.rb",
+    "test/unit/svn_test.rb",
+    "test/unit/unfuddle_svn_test.rb",
     "test/unit/unfuddle_test.rb"
   ]
 
