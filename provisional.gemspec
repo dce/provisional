@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{provisional}
-  s.version = "2.0.3"
+  s.version = "2.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mark Cornick"]
@@ -27,7 +27,8 @@ Gem::Specification.new do |s|
     "test/test_helper.rb",
     "test/unit/git_test.rb",
     "test/unit/github_test.rb",
-    "test/unit/project_test.rb"
+    "test/unit/project_test.rb",
+    "test/unit/unfuddle_test.rb"
   ]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/vigetlabs/provisional}
@@ -40,7 +41,8 @@ Gem::Specification.new do |s|
     "test/test_helper.rb",
     "test/unit/git_test.rb",
     "test/unit/github_test.rb",
-    "test/unit/project_test.rb"
+    "test/unit/project_test.rb",
+    "test/unit/unfuddle_test.rb"
   ]
 
   if s.respond_to? :specification_version then
