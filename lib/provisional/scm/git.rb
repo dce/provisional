@@ -1,8 +1,6 @@
 require 'fileutils'
 require 'git'
-require 'rails/version'
-require 'rails_generator'
-require 'rails_generator/scripts/generate'
+require 'provisional/rails_application'
 
 module Provisional
   module SCM
@@ -34,10 +32,7 @@ module Provisional
 
       def generate_rails
         rescuing_exceptions do
-          generator_options = ['.', '-m', @options['template_path']]
-          Dir.chdir @options['path']
-          Rails::Generator::Base.use_application_sources!
-          Rails::Generator::Scripts::Generate.new.run generator_options, :generator => 'app'
+          Provisional::RailsApplication.new(@options['path'], @options['template_path'])
         end
       end
 

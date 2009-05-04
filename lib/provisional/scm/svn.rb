@@ -1,7 +1,5 @@
 require 'fileutils'
-require 'rails/version'
-require 'rails_generator'
-require 'rails_generator/scripts/generate'
+require 'provisional/rails_application'
 
 module Provisional
   module SCM
@@ -18,6 +16,11 @@ module Provisional
         end
       end
 
+      def gitignore
+        # FIXME: implement it
+        raise NotImplementedError
+      end
+
       def init
         raise NotImplementedError, "The SVN scm cannot currently be used directly"
       end
@@ -31,10 +34,7 @@ module Provisional
             system("svn add branches tags trunk")
             system("svn commit -m 'Structure by Provisional'")
           end
-          Dir.chdir 'trunk'
-          generator_options = ['.', '-m', @options['template_path']]
-          Rails::Generator::Base.use_application_sources!
-          Rails::Generator::Scripts::Generate.new.run generator_options, :generator => 'app'
+          Provisional::RailsApplication.new('trunk', @options['template_path'])
         end
       end
 

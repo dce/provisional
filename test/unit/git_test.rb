@@ -31,16 +31,12 @@ class GitTest < Test::Unit::TestCase
   end
 
   def test_generate_rails
-    Dir.expects(:chdir)
-    Rails::Generator::Base.expects(:use_application_sources!)
-    generator_stub = stub()
-    generator_stub.expects(:run).with(%w(. -m template_path), :generator => 'app')
-    Rails::Generator::Scripts::Generate.expects(:new).returns(generator_stub)
+    Provisional::RailsApplication.expects(:new)
     @scm.generate_rails
   end
 
   def test_generate_rails_should_raise_RuntimeError_if_any_step_raises_any_exception
-    Dir.expects(:chdir).raises(Errno::ENOENT)
+    Provisional::RailsApplication.expects(:new).raises(RuntimeError)
     assert_raise RuntimeError do
       @scm.generate_rails
     end
