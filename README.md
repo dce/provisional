@@ -58,15 +58,15 @@ Options specified via the command line take precedence over options specified in
 
 ## GitHub
 
-To use GitHub, you will need to place your GitHub username and token in your Git configuration as described here: http://github.com/guides/local-github-config Since there is already this established convention for GitHub credentials, to prevent redundant configuration, Provisional does not use its own configuration options for GitHub access.
+To use [GitHub](http://github.com/), you will need to place your GitHub username and token in your Git configuration as described here: http://github.com/guides/local-github-config Since there is already this established convention for GitHub credentials, to prevent redundant configuration, Provisional does not use its own configuration options for GitHub access.
 
 ## Unfuddle
 
-To use Unfuddle (for either Git or Subversion) you will need to specify the --domain, --id, --username and --password options. --domain is used to specify your unfuddle.com subdomain; --id is used to specify a project ID. Using a YAML file containing these options is recommended and should be helpful.
+To use [Unfuddle](http://unfuddle.com/) (for either Git or Subversion) you will need to specify the --domain, --id, --username and --password options. --domain is used to specify your unfuddle.com subdomain; --id is used to specify a project ID. Using a YAML file containing these options is recommended and should be helpful.
 
 ## TODO
 
-Beanstalk (http://beanstalkapp.com/) will be supported once their API (currently in private beta) is available to all users.
+[Beanstalk](http://beanstalkapp.com/) will be supported once their API (currently in private beta) is available to all users.
 
 ## License
 
