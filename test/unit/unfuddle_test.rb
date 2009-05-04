@@ -3,16 +3,7 @@ require File.dirname(__FILE__) + '/../../lib/provisional/scm/unfuddle'
 
 class UnfuddleTest < Test::Unit::TestCase
   def setup
-    @scm = Provisional::SCM::Unfuddle.new(
-    {
-      'name' => 'name',
-      'template_path' => 'template_path',
-      'domain' => 'domain',
-      'id' => 1,
-      'username' => 'username',
-      'password' => 'password'
-    }
-    )
+    @scm = new_scm(Provisional::SCM::Unfuddle)
   end
 
   def test_gitignore

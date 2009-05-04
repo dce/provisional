@@ -3,16 +3,7 @@ require File.dirname(__FILE__) + '/../../lib/provisional/scm/unfuddle_svn'
 
 class UnfuddleSvnTest < Test::Unit::TestCase
   def setup
-    @scm = Provisional::SCM::UnfuddleSvn.new(
-    {
-      'name' => 'name',
-      'template_path' => 'template_path',
-      'domain' => 'domain',
-      'id' => 1,
-      'username' => 'username',
-      'password' => 'password'
-    }
-    )
+    @scm = new_scm(Provisional::SCM::UnfuddleSvn)
   end
 
   def test_init

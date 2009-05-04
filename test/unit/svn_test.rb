@@ -4,15 +4,7 @@ require File.dirname(__FILE__) + '/../../lib/provisional/scm/svn'
 class SvnTest < Test::Unit::TestCase
 
   def setup
-    @scm = Provisional::SCM::Svn.new(
-    {
-      'name' => 'name',
-      'template_path' => 'template_path',
-      'url' => 'url',
-      'username' => 'username',
-      'password' => 'password'
-    }
-    )
+    @scm = new_scm(Provisional::SCM::Svn, { 'url' => 'url' })
   end
 
   # FIXME: implement this

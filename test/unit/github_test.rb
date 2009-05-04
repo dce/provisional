@@ -3,12 +3,7 @@ require File.dirname(__FILE__) + '/../../lib/provisional/scm/github'
 
 class GithubTest < Test::Unit::TestCase
   def setup
-    @scm = Provisional::SCM::Github.new(
-    {
-      'name' => 'name',
-      'template_path' => 'template_path'
-    }
-    )
+    @scm = new_scm(Provisional::SCM::Github)
   end
 
   def test_gitignore
