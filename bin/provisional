@@ -5,11 +5,14 @@ require 'provisional'
 require 'trollop'
 
 options = Trollop::options do
-  # version "1.2.4"
   opt :name, "Name of the project", :type => String
-  opt :scm, "SCM to use", :type => String, :default => 'git'
-  opt :rails, "Path to rails generator script", :type => String, :default => `which rails`.chomp
-  opt :template, "Rails template to use", :type => String, :default => 'viget'
+  opt :scm, "SCM to use", :type => String
+  opt :template, "Rails template to use", :type => String
+  opt :domain, "Domain (for some SCMs, see documentation)", :type => String
+  opt :username, "Username (for some SCMs, see documentation)", :type => String
+  opt :password, "Password (for some SCMs, see documentation)", :type => String
+  opt :id, "Id (for some SCMs, see documentation)", :type => String
+  opt :config, "Config file (optional)", :type => String
 end
 
 Provisional::Project.new(options)

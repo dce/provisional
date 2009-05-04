@@ -6,9 +6,8 @@ class GitTest < Test::Unit::TestCase
   def setup
     @scm = Provisional::SCM::Git.new(
     {
-      :name => 'name',
-      :template_path => 'template_path',
-      :rails => 'rails'
+      'name' => 'name',
+      'template_path' => 'template_path'
     }
     )
   end

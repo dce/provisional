@@ -5,9 +5,8 @@ class GithubTest < Test::Unit::TestCase
   def setup
     @scm = Provisional::SCM::Github.new(
     {
-      :name => 'name',
-      :template_path => 'template_path',
-      :rails => 'rails'
+      'name' => 'name',
+      'template_path' => 'template_path'
     }
     )
   end

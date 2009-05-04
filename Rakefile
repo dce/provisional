@@ -13,6 +13,7 @@ begin
     gem.add_dependency 'trollop', '>= 1.10.2'
     gem.add_dependency 'rails', '>= 2.3.0'
     gem.add_dependency 'git', '>= 1.0.5'
+    gem.add_dependency 'builder', '>= 2.1.2'
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end

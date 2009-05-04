@@ -25,17 +25,17 @@ module Provisional
 
       def init
         rescuing_exceptions do
-          FileUtils.mkdir_p @options[:name]
-          Dir.chdir @options[:name]
-          @options[:path] = Dir.getwd
+          FileUtils.mkdir_p @options['name']
+          Dir.chdir @options['name']
+          @options['path'] = Dir.getwd
           ::Git.init
         end
       end
 
       def generate_rails
         rescuing_exceptions do
-          generator_options = ['.', '-m', @options[:template_path]]
-          Dir.chdir @options[:path]
+          generator_options = ['.', '-m', @options['template_path']]
+          Dir.chdir @options['path']
           Rails::Generator::Base.use_application_sources!
           Rails::Generator::Scripts::Generate.new.run generator_options, :generator => 'app'
         end
@@ -43,8 +43,8 @@ module Provisional
 
       def checkin
         rescuing_exceptions do
-          repo = ::Git.open @options[:path]
-          Dir.chdir @options[:path]
+          repo = ::Git.open @options['path']
+          Dir.chdir @options['path']
           File.open('.gitignore', 'w') do |f|
             f.puts gitignore
           end

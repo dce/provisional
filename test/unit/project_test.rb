@@ -3,7 +3,6 @@ require File.dirname(__FILE__) + '/../../lib/provisional/scm/git'
 
 class ProjectTest < Test::Unit::TestCase
 
-  RAILS = `which rails`.chomp
   DEFAULT_TEMPLATE_PATH = File.expand_path(File.join(File.dirname(__FILE__), '../../lib/provisional/templates/viget.rb'))
 
   def stub_git
@@ -15,8 +14,23 @@ class ProjectTest < Test::Unit::TestCase
   end
 
   def new_project(opts = {})
-    opts = {:name => 'name', :template => 'viget', :rails => RAILS, :scm => 'git'}.merge(opts)
+    opts = {:name => 'name', :template => 'viget', :scm => 'git'}.merge(opts)
     Provisional::Project.new(opts)
+  end
+
+  def test_should_be_able_to_use_a_config_file
+    options = {'name' => 'albert', 'template' => 'viget', 'scm' => 'git'}
+    YAML.expects(:load_file).with('config.yml').returns(options)
+    stub_git
+    project = Provisional::Project.new(:config => 'config.yml')
+    assert_equal 'albert', project.options[:name]
+  end
+
+  def test_should_bail_on_config_file_errors
+    YAML.expects(:load_file).with('config.yml').raises(Errno::ENOENT)
+    assert_raise ArgumentError do
+      Provisional::Project.new(:config => 'config.yml')
+    end
   end
 
   def test_new_project_should_call_init_generate_rails_and_checkin
@@ -29,7 +43,6 @@ class ProjectTest < Test::Unit::TestCase
     path_to_my_template = File.expand_path('my_template.rb')
     File.expects(:exist?).with(path_to_my_template).times(2).returns(true)
     File.expects(:exist?).with('name').returns(false)
-    File.expects(:exist?).with(RAILS).returns(true)
     project = new_project(:template => 'my_template.rb')
     assert_equal path_to_my_template, project.options[:template_path]
   end
@@ -75,24 +88,6 @@ class ProjectTest < Test::Unit::TestCase
   def test_should_raise_argumenterror_if_unsupported_scm_is_specified
     assert_raise ArgumentError do
       new_project(:scm => 'bogus')
-    end
-  end
-
-  def test_should_raise_argumenterror_if_no_scm_is_specified
-    assert_raise ArgumentError do
-      new_project(:scm => nil)
-    end
-  end
-
-  def test_should_raise_argumenterror_if_no_rails_is_specified
-    assert_raise ArgumentError do
-      new_project(:rails => nil)
-    end
-  end
-
-  def test_should_raise_argumenterror_if_invalid_rails_is_specified
-    assert_raise ArgumentError do
-      new_project(:rails => 'bogus')
     end
   end
 

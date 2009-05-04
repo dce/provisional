@@ -12,9 +12,9 @@ module Provisional
           Net::HTTP.post_form URI.parse('https://github.com/api/v2/yaml/repos/create'), {
             'login' => github_user,
             'token' => github_token,
-            'name' => @options[:name]
+            'name' => @options['name']
           }
-          repo.add_remote('origin', "git@github.com:#{github_user}/#{@options[:name]}.git")
+          repo.add_remote('origin', "git@github.com:#{github_user}/#{@options['name']}.git")
           repo.push
         rescue
           raise RuntimeError, "Repository created locally, but not pushed to GitHub due to exception: #{$!}"
