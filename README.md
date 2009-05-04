@@ -64,6 +64,10 @@ To use GitHub, you will need to place your GitHub username and token in your Git
 
 To use Unfuddle (for either Git or Subversion) you will need to specify the --domain, --id, --username and --password options. --domain is used to specify your unfuddle.com subdomain; --id is used to specify a project ID. Using a YAML file containing these options is recommended and should be helpful.
 
+## TODO
+
+Beanstalk (http://beanstalkapp.com/) will be supported once their API (currently in private beta) is available to all users.
+
 ## License
 
 Copyright (c) 2009 Mark Cornick of Viget Labs <mark@viget.com>
