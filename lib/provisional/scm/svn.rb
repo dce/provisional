@@ -8,14 +8,6 @@ module Provisional
         @options = options
       end
 
-      def rescuing_exceptions(&block)
-        begin
-          yield
-        rescue
-          raise RuntimeError, "Repository not created due to exception: #{$!}"
-        end
-      end
-
       def gitignore
         # FIXME: implement it
         raise NotImplementedError
