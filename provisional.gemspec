@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{provisional}
-  s.version = "2.1.0"
+  s.version = "2.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mark Cornick"]
@@ -11,10 +11,10 @@ Gem::Specification.new do |s|
   s.email = %q{mark@viget.com}
   s.executables = ["provisional"]
   s.extra_rdoc_files = [
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION.yml",
     "bin/provisional",
