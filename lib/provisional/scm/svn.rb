@@ -22,15 +22,16 @@ module Provisional
         raise NotImplementedError, "The SVN scm cannot currently be used directly"
       end
 
-      def generate_rails
+      def generate_rails(create_structure = true)
         rescuing_exceptions do
           system("svn co --username=#{@options['username']} --password=#{@options['password']} #{@options['url']} #{@options['name']}")
           Dir.chdir @options['name']
-          %w(branches tags trunk).each {|d| Dir.mkdir(d)}
-          system("svn add branches tags trunk")
-          system("svn commit -m 'Structure by Provisional'")
+          if create_structure
+            %w(branches tags trunk).each {|d| Dir.mkdir(d)}
+            system("svn add branches tags trunk")
+            system("svn commit -m 'Structure by Provisional'")
+          end
           Dir.chdir 'trunk'
-
           generator_options = ['.', '-m', @options['template_path']]
           Rails::Generator::Base.use_application_sources!
           Rails::Generator::Scripts::Generate.new.run generator_options, :generator => 'app'
