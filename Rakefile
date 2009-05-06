@@ -6,6 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "provisional"
     gem.summary = "Automation for new Rails Projects"
+    gem.description = "Provisional creates a new Rails project, using a standard Rails 2.3 application template, and checks it into a new SCM repository."
     gem.email = "mark@viget.com"
     gem.homepage = "http://github.com/vigetlabs/provisional"
     gem.authors = ["Mark Cornick"]
