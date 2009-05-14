@@ -41,8 +41,8 @@ The domain, username, password, and id options are used by certain SCMs to provi
 The template option can be either a literal path to a template file, a URL for a template on a remote server, or the name of one of the templates found in lib/provisional/templates (without the .rb suffix.) The default viget template does the following:
 
 * freezes rails from currently installed gems
-* installs gems: `mocha`, `factory_girl`, `shoulda`
-* installs plugins: `hoptoad_notifier`, `jrails`, `model_generator_with_factories`, `viget_deployment`, `vl_cruise_control`
+* installs gems: `mocha`, `factory_girl`, `shoulda`, `webrat`
+* installs plugins: `hoptoad_notifier`, `jrails`, `model_generator_with_factories`, `viget_deployment`, `vl_cruise_control`, `asset_packager`
 * installs a .gitignore file to ignore logs, temp files, sqlite3 databases, rcov reports, and `database.yml`
 * generates Capistrano configuration with viget_deployment
 * copies `database.yml` to `database.yml-sample`
