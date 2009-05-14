@@ -21,8 +21,5 @@ class Test::Unit::TestCase
     end
     Git.expects(:open).returns(repo_stub)
     Dir.expects(:chdir)
-    gitignore_file = stub()
-    gitignore_file.expects(:puts).with(@scm.gitignore)
-    File.expects(:open).with('.gitignore', 'w').yields(gitignore_file)
   end
 end

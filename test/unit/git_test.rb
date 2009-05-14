@@ -7,10 +7,6 @@ class GitTest < Test::Unit::TestCase
     @scm = new_scm(Provisional::SCM::Git)
   end
 
-  def test_gitignore
-    assert_equal Provisional::IGNORE_FILES.join("\n"), @scm.gitignore
-  end
-
   def test_init
     FileUtils.expects(:mkdir_p).with('name')
     Dir.expects(:chdir).with('name')

@@ -7,13 +7,6 @@ class SvnTest < Test::Unit::TestCase
     @scm = new_scm(Provisional::SCM::Svn, { 'url' => 'url' })
   end
 
-  # FIXME: implement this
-  def test_gitignore
-    assert_raise NotImplementedError do
-      @scm.gitignore
-    end
-  end
-
   def test_init
     assert_raise NotImplementedError do
       @scm.init

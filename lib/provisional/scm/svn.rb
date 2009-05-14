@@ -8,11 +8,6 @@ module Provisional
         @options = options
       end
 
-      def gitignore
-        # FIXME: implement it
-        raise NotImplementedError
-      end
-
       def init
         raise NotImplementedError, "The SVN scm cannot currently be used directly"
       end
