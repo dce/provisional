@@ -71,4 +71,3 @@ class ActiveSupport::TestCase
   fixtures :all
 end  
 ]
-run 'touch test/test_factory.rb'
