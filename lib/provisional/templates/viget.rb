@@ -7,6 +7,7 @@ rake 'rails:freeze:gems'
 gem 'mocha', :version => '>= 0.9.5'
 gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com', :version => '>= 1.2.0'
 gem 'thoughtbot-shoulda', :lib => 'shoulda', :source => 'http://gems.github.com', :version => '>= 2.10.1'
+gem 'webrat'
 rake 'gems:install gems:unpack'
 
 # install plugins
@@ -50,3 +51,24 @@ rake 'jrails:install:javascripts'
 
 # setup shoulda rake tasks
 file 'lib/tasks/shoulda.rake', %q[require 'shoulda/tasks']
+
+# Setup testing
+file 'test/test_helper.rb', %q[
+$:.push(File.dirname(__FILE__))
+require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+require 'test_help'
+require 'factory_girl'
+require 'mocha'
+require 'webrat'
+
+Webrat.configure do |config|
+  config.mode = :rails
+end
+
+class ActiveSupport::TestCase  
+  self.use_transactional_fixtures = true
+  self.use_instantiated_fixtures  = false
+  fixtures :all
+end  
+]
+run 'touch test/test_factory.rb'
