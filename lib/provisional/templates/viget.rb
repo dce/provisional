@@ -15,6 +15,7 @@ plugin 'jrails', :git => 'git://github.com/aaronchi/jrails.git'
 plugin 'model_generator_with_factories', :git => 'git://github.com/vigetlabs/model_generator_with_factories.git'
 plugin 'viget_deployment', :git => 'git://github.com/vigetlabs/viget_deployment.git'
 plugin 'vl_cruise_control', :git => 'git://github.com/vigetlabs/vl_cruise_control.git'
+plugin 'asset_packager', :git => 'git://github.com/sbecker/asset_packager.git'
 
 # generate viget_deployment stuff
 generate :viget_deployment
