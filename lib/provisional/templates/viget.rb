@@ -20,13 +20,29 @@ plugin 'vl_cruise_control', :git => 'git://github.com/vigetlabs/vl_cruise_contro
 generate :viget_deployment
 
 # clean up
-run 'rm -rf public/images/rails.png log/* test/fixtures config/database.yml'
+run 'rm -rf public/images/rails.png log/* test/fixtures'
 inside 'public' do
   run 'rm -f index.html favicon.ico robots.txt'
 end
 inside 'public/javascripts' do
   run 'rm -f dragdrop.js controls.js effects.js prototype.js'
 end
+
+# Copy database.yml for distribution use
+run 'cp config/database.yml config/database.yml.example'
+
+# Set up .gitignore files
+file '.gitignore', %q[
+.DS_Store
+coverage/*
+log/*.log
+db/*.db
+db/*.sqlite3
+tmp/**/*
+config/database.yml
+END
+run 'touch tmp/.gitignore log/.gitignore vendor/.gitignore'
+]
 
 # install jrails javascripts
 rake 'jrails:install:javascripts'
