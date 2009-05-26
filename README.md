@@ -67,7 +67,9 @@ To use [Unfuddle](http://unfuddle.com/) (for either Git or Subversion) you will 
 
 ## Beanstalk
 
-To use [Beanstalk](http://beanstalkapp.com/) you will need to specify the --domain, ---username and --password options. --domain is used to specify your beanstalkapp.com subdomain. Using a YAML file containing these options is recommended and should be helpful.
+As of this writing (May 2009) [Beanstalk](http://beanstalkapp.com/)'s API is in private beta. See [the API documentation](http://api.beanstalkapp.com/) for details on how to gain access. Thanks to Wildbit for giving us access to the private beta.
+
+To use Beanstalk you will need to specify the --domain, ---username and --password options. --domain is used to specify your beanstalkapp.com subdomain. Using a YAML file containing these options is recommended and should be helpful.
 
 ## License
 

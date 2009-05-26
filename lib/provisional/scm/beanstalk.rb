@@ -19,8 +19,10 @@ module Provisional
 
       def init
         begin
-          ::Beanstalk::Repository.site = "http://#{@options['domain']}.beanstalkapp.com/"
-          ::Beanstalk::Repository.create(:name => @options['name'], :title => @options['name'], :create_structure => true)
+          ::Beanstalk::Repository.site     = "http://#{@options['domain']}.beanstalkapp.com/"
+          ::Beanstalk::Repository.user     = @options['username']
+          ::Beanstalk::Repository.password = @options['password']
+          ::Beanstalk::Repository.create   :name => @options['name'], :title => @options['name'], :create_structure => true
           @options['url'] = "http://#{@options['domain']}.svn.beanstalkapp.com/#{@options['name']}/"
         rescue
           raise RuntimeError, "Repository not created on Beanstalk due to exception: #{$!}"
