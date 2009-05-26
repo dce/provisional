@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{provisional}
-  s.version = "2.1.5"
+  s.version = "2.1.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mark Cornick"]
-  s.date = %q{2009-05-14}
+  s.date = %q{2009-05-26}
   s.default_executable = %q{provisional}
   s.description = %q{Provisional creates a new Rails project, using a standard Rails 2.3 application template, and checks it into a new SCM repository.}
   s.email = %q{mark@viget.com}
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
     "lib/provisional.rb",
     "lib/provisional/project.rb",
     "lib/provisional/rails_application.rb",
+    "lib/provisional/scm/beanstalk.rb",
     "lib/provisional/scm/git.rb",
     "lib/provisional/scm/github.rb",
     "lib/provisional/scm/svn.rb",
@@ -30,6 +31,7 @@ Gem::Specification.new do |s|
     "lib/provisional/templates/viget.rb",
     "lib/provisional/unfuddle_common.rb",
     "test/test_helper.rb",
+    "test/unit/beanstalk_test.rb",
     "test/unit/git_test.rb",
     "test/unit/github_test.rb",
     "test/unit/project_test.rb",
@@ -48,6 +50,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Automation for new Rails Projects}
   s.test_files = [
     "test/test_helper.rb",
+    "test/unit/beanstalk_test.rb",
     "test/unit/git_test.rb",
     "test/unit/github_test.rb",
     "test/unit/project_test.rb",
