@@ -35,6 +35,7 @@ The SCM option can be one of the following ("`project_name`" refers to the value
 * `github`: creates a git repository in the `project_name` directory, creates `project_name` on GitHub using the specified credentials, adds it as the "origin" remote, and pushes. (See section below about required configuration.)
 * `unfuddle`: creates a git repository in the `project_name` directory, creates a repository called `project_name` under an existing Unfuddle project using the specified credentials, and adds it as the "origin" remote. _You must push manually_ because Unfuddle typically has a lag of a few minutes between when a repository is created and when it can be accessed. (See section below about required configuration.)
 * `unfuddle_svn`: creates a Subversion repository called `project_name` under an existing Unfuddle project using the specified credentials, and checks it out into the `project_name` directory.
+* `beanstalk`: creates a Subversion repository called `project_name` on Beanstalk using the specified credentials, and checks it out into the `project_name` directory.
 
 The domain, username, password, and id options are used by certain SCMs to provide information needed to use an API. The documentation on these SCMs (below) will indicate how they are to be used.
 
@@ -64,9 +65,9 @@ To use [GitHub](http://github.com/), you will need to place your GitHub username
 
 To use [Unfuddle](http://unfuddle.com/) (for either Git or Subversion) you will need to specify the --domain, --id, --username and --password options. --domain is used to specify your unfuddle.com subdomain; --id is used to specify a project ID. Using a YAML file containing these options is recommended and should be helpful.
 
-## TODO
+## Beanstalk
 
-[Beanstalk](http://beanstalkapp.com/) will be supported once their API (currently in private beta) is available to all users.
+To use [Beanstalk](http://beanstalkapp.com/) you will need to specify the --domain, ---username and --password options. --domain is used to specify your beanstalkapp.com subdomain. Using a YAML file containing these options is recommended and should be helpful.
 
 ## License
 
