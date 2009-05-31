@@ -32,6 +32,12 @@ module Provisional
           system("svn commit -m 'Initial commit by Provisional'")
         end
       end
+
+      def provision
+        self.init
+        self.generate_rails
+        self.checkin
+      end
     end
   end
 end

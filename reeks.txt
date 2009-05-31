@@ -1,11 +1,4 @@
 (in /Users/mcornick/Sites/provisional)
-"lib/provisional/project.rb" -- 5 warnings:
-Provisional::Project#initialize calls @options["name"] multiple times (Duplication)
-Provisional::Project#initialize calls @options["scm"] multiple times (Duplication)
-Provisional::Project#initialize calls @options["template"] multiple times (Duplication)
-Provisional::Project#initialize calls File.expand_path(@options["template"]) multiple times (Duplication)
-Provisional::Project#initialize calls options[:config] multiple times (Duplication)
-
 "lib/provisional/rails_application.rb" -- 1 warnings:
 Provisional::RailsApplication#initialize doesn't depend on instance state (Utility Function)
 
@@ -22,9 +15,7 @@ Provisional::SCM::Github#checkin refers to repo more than self (Feature Envy)
 "lib/provisional/scm/svn.rb" -- 1 warnings:
 Provisional::SCM::Svn#generate_rails has approx 8 statements (Long Method)
 
-"lib/provisional/unfuddle_common.rb" -- 5 warnings:
-create_repository calls response.code multiple times (Duplication)
+"lib/provisional/unfuddle_common.rb" -- 3 warnings:
 create_repository has approx 7 statements (Long Method)
-xml_payload calls options["name"] multiple times (Duplication)
 xml_payload doesn't depend on instance state (Utility Function)
 xml_payload has approx 7 statements (Long Method)

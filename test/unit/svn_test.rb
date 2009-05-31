@@ -50,4 +50,11 @@ class SvnTest < Test::Unit::TestCase
       @scm.checkin
     end
   end
+  
+  def test_provision_should_call_init_generate_rails_and_checkin
+    @scm.expects(:init)
+    @scm.expects(:generate_rails)
+    @scm.expects(:checkin)
+    @scm.provision
+  end
 end

@@ -6,8 +6,8 @@ require 'yaml'
 module Provisional
   class Project
     attr_reader :options
-    
-    def initialize(options)
+
+    def load_options(options)
       @options = HashWithIndifferentAccess.new
       if options[:config]
         begin
@@ -17,16 +17,16 @@ module Provisional
         end
       end
       @options = @options.merge(options.reject{|key, value| value.nil?})
-
       @options[:scm] ||= 'git'
       @options[:template] ||= 'viget'
+    end
 
+    def find_template_path
       begin
         template_is_url = [URI::HTTP, URI::HTTPS].include?(URI.parse(@options['template']).class)
       rescue URI::InvalidURIError
         template_is_url = false
       end
-
       unless template_is_url
         if File.exist?(File.expand_path(@options['template']))
           @options['template_path'] = File.expand_path(@options['template'])
@@ -37,7 +37,9 @@ module Provisional
       else
         @options['template_path'] = @options['template']
       end
+    end
 
+    def validate_options
       raise ArgumentError, "name must be specified" unless @options['name']
       raise ArgumentError, "already exists: #{@options['name']}" if File.exist?(@options['name'])
       raise ArgumentError, "already exists: #{@options['name']}.repo" if @options['scm'] == 'svn' && File.exist?("#{@options['name']}.repo")
@@ -47,13 +49,18 @@ module Provisional
       rescue MissingSourceFile
         raise ArgumentError, "is not supported: #{@options['scm']}"
       end
-
-      scm_class = "Provisional::SCM::#{@options['scm'].classify}".constantize
-      scm = scm_class.new(@options)
-      scm.init
-      scm.generate_rails
-      scm.checkin
     end
 
+    def provision
+      scm_class = "Provisional::SCM::#{@options['scm'].classify}".constantize
+      scm_class.new(@options).provision
+    end
+
+    def initialize(options)
+      load_options(options)
+      find_template_path
+      validate_options
+      provision
+    end
   end
 end

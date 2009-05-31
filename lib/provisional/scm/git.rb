@@ -33,6 +33,12 @@ module Provisional
           repo
         end
       end
+      
+      def provision
+        self.init
+        self.generate_rails
+        self.checkin
+      end
     end
   end
 end

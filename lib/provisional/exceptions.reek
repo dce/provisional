@@ -1,8 +1,11 @@
 ---
 Duplication:
   exclude:
-  - initialize
   - create_repository
+  - find_template_path
+  - initialize
+  - load_options
+  - validate_options
   - xml_payload
 
 NestedIterators:
