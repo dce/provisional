@@ -17,7 +17,7 @@ module Provisional
           system("svn co --username=#{@options['username']} --password=#{@options['password']} #{@options['url']} #{@options['name']}")
           Dir.chdir @options['name']
           if create_structure
-            %w(branches tags trunk).each {|d| Dir.mkdir(d)}
+            %w(branches tags trunk).each {|directory| Dir.mkdir(directory)}
             system("svn add branches tags trunk")
             system("svn commit -m 'Structure by Provisional'")
           end

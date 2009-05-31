@@ -1,12 +1,10 @@
 (in /Users/mcornick/Sites/provisional)
-"lib/provisional/project.rb" -- 8 warnings:
+"lib/provisional/project.rb" -- 6 warnings:
 Provisional::Project#initialize calls @options["name"] multiple times (Duplication)
 Provisional::Project#initialize calls @options["scm"] multiple times (Duplication)
 Provisional::Project#initialize calls @options["template"] multiple times (Duplication)
 Provisional::Project#initialize calls File.expand_path(@options["template"]) multiple times (Duplication)
 Provisional::Project#initialize calls options[:config] multiple times (Duplication)
-Provisional::Project#initialize/block has the variable name 'k' (Uncommunicative Name)
-Provisional::Project#initialize/block has the variable name 'v' (Uncommunicative Name)
 Provisional::Project#is_valid_url? doesn't depend on instance state (Utility Function)
 
 "lib/provisional/rails_application.rb" -- 1 warnings:
@@ -27,11 +25,10 @@ Provisional::SCM::Github#checkin calls @options["name"] multiple times (Duplicat
 Provisional::SCM::Github#checkin has approx 7 statements (Long Method)
 Provisional::SCM::Github#checkin refers to repo more than self (Feature Envy)
 
-"lib/provisional/scm/svn.rb" -- 5 warnings:
+"lib/provisional/scm/svn.rb" -- 4 warnings:
 Provisional::SCM::Svn#generate_rails calls @options["name"] multiple times (Duplication)
 Provisional::SCM::Svn#generate_rails has approx 8 statements (Long Method)
 Provisional::SCM::Svn#generate_rails/block is controlled by argument create_structure (Control Couple)
-Provisional::SCM::Svn#generate_rails/block/block has the variable name 'd' (Uncommunicative Name)
 Provisional::SCM::Svn#generate_rails/block/block is nested (Nested Iterators)
 
 "lib/provisional/scm/unfuddle.rb" -- 1 warnings:

@@ -15,7 +15,7 @@ module Provisional
           raise ArgumentError, "could not be loaded or parsed: #{options[:config]}"
         end
       end
-      @options = @options.merge(options.reject{|k,v| v.nil?})
+      @options = @options.merge(options.reject{|key, value| value.nil?})
 
       @options[:scm] ||= 'git'
       @options[:template] ||= 'viget'
