@@ -25,10 +25,9 @@ Provisional::SCM::Github#checkin calls @options["name"] multiple times (Duplicat
 Provisional::SCM::Github#checkin has approx 7 statements (Long Method)
 Provisional::SCM::Github#checkin refers to repo more than self (Feature Envy)
 
-"lib/provisional/scm/svn.rb" -- 3 warnings:
+"lib/provisional/scm/svn.rb" -- 2 warnings:
 Provisional::SCM::Svn#generate_rails calls @options["name"] multiple times (Duplication)
 Provisional::SCM::Svn#generate_rails has approx 8 statements (Long Method)
-Provisional::SCM::Svn#generate_rails/block/block is nested (Nested Iterators)
 
 "lib/provisional/scm/unfuddle.rb" -- 1 warnings:
 Provisional::SCM::Unfuddle#checkin calls @options["domain"] multiple times (Duplication)
@@ -36,11 +35,10 @@ Provisional::SCM::Unfuddle#checkin calls @options["domain"] multiple times (Dupl
 "lib/provisional/scm/unfuddle_svn.rb" -- 1 warnings:
 Provisional::SCM::UnfuddleSvn#init calls @options["domain"] multiple times (Duplication)
 
-"lib/provisional/unfuddle_common.rb" -- 7 warnings:
+"lib/provisional/unfuddle_common.rb" -- 6 warnings:
 create_repository calls response.code multiple times (Duplication)
 create_repository has approx 7 statements (Long Method)
 xml_payload calls options["name"] multiple times (Duplication)
 xml_payload doesn't depend on instance state (Utility Function)
 xml_payload has approx 7 statements (Long Method)
 xml_payload refers to xml more than self (Feature Envy)
-xml_payload/block/block is nested (Nested Iterators)

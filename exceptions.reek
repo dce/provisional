@@ -2,3 +2,6 @@
 ControlCouple: 
   exclude:
   - generate_rails
+
+NestedIterators:
+  enabled: false
