@@ -43,7 +43,19 @@ rescue LoadError
   end
 end
 
-
+begin
+  require 'reek/rake_task'
+  Reek::RakeTask.new do |t|
+    t.fail_on_error = true
+    t.verbose = false
+    t.source_files = 'lib/**/*.rb'
+  end
+rescue LoadError
+  task :reek do
+    abort "Reek is not available. In order to run rcov, you must: sudo gem install reek"
+  end
+end
+  
 task :default => :test
 
 require 'rake/rdoctask'
