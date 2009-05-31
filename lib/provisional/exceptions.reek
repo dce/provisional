@@ -1,7 +1,9 @@
 ---
-ControlCouple: 
+Duplication:
   exclude:
-  - generate_rails
+  - initialize
+  - create_repository
+  - xml_payload
 
 NestedIterators:
   enabled: false

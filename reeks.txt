@@ -9,30 +9,18 @@ Provisional::Project#initialize calls options[:config] multiple times (Duplicati
 "lib/provisional/rails_application.rb" -- 1 warnings:
 Provisional::RailsApplication#initialize doesn't depend on instance state (Utility Function)
 
-"lib/provisional/scm/beanstalk.rb" -- 3 warnings:
-Provisional::SCM::Beanstalk#init calls @options["domain"] multiple times (Duplication)
-Provisional::SCM::Beanstalk#init calls @options["name"] multiple times (Duplication)
+"lib/provisional/scm/beanstalk.rb" -- 1 warnings:
 Provisional::SCM::Beanstalk#init has approx 6 statements (Long Method)
 
-"lib/provisional/scm/git.rb" -- 3 warnings:
-Provisional::SCM::Git#checkin calls @options["path"] multiple times (Duplication)
+"lib/provisional/scm/git.rb" -- 1 warnings:
 Provisional::SCM::Git#checkin has approx 6 statements (Long Method)
-Provisional::SCM::Git#init calls @options["name"] multiple times (Duplication)
 
-"lib/provisional/scm/github.rb" -- 3 warnings:
-Provisional::SCM::Github#checkin calls @options["name"] multiple times (Duplication)
+"lib/provisional/scm/github.rb" -- 2 warnings:
 Provisional::SCM::Github#checkin has approx 7 statements (Long Method)
 Provisional::SCM::Github#checkin refers to repo more than self (Feature Envy)
 
-"lib/provisional/scm/svn.rb" -- 2 warnings:
-Provisional::SCM::Svn#generate_rails calls @options["name"] multiple times (Duplication)
+"lib/provisional/scm/svn.rb" -- 1 warnings:
 Provisional::SCM::Svn#generate_rails has approx 8 statements (Long Method)
-
-"lib/provisional/scm/unfuddle.rb" -- 1 warnings:
-Provisional::SCM::Unfuddle#checkin calls @options["domain"] multiple times (Duplication)
-
-"lib/provisional/scm/unfuddle_svn.rb" -- 1 warnings:
-Provisional::SCM::UnfuddleSvn#init calls @options["domain"] multiple times (Duplication)
 
 "lib/provisional/unfuddle_common.rb" -- 5 warnings:
 create_repository calls response.code multiple times (Duplication)

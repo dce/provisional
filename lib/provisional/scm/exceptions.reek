@@ -1,0 +1,10 @@
+---
+Duplication:
+  exclude:
+  - checkin
+  - generate_rails
+  - init
+
+ControlCouple: 
+  exclude:
+  - generate_rails
