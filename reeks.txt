@@ -35,10 +35,9 @@ Provisional::SCM::Unfuddle#checkin calls @options["domain"] multiple times (Dupl
 "lib/provisional/scm/unfuddle_svn.rb" -- 1 warnings:
 Provisional::SCM::UnfuddleSvn#init calls @options["domain"] multiple times (Duplication)
 
-"lib/provisional/unfuddle_common.rb" -- 6 warnings:
+"lib/provisional/unfuddle_common.rb" -- 5 warnings:
 create_repository calls response.code multiple times (Duplication)
 create_repository has approx 7 statements (Long Method)
 xml_payload calls options["name"] multiple times (Duplication)
 xml_payload doesn't depend on instance state (Utility Function)
 xml_payload has approx 7 statements (Long Method)
-xml_payload refers to xml more than self (Feature Envy)

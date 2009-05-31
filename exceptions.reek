@@ -5,3 +5,7 @@ ControlCouple:
 
 NestedIterators:
   enabled: false
+
+FeatureEnvy:
+  exclude:
+  - xml_payload
