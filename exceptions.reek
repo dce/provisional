@@ -1,0 +1,4 @@
+---
+ControlCouple: 
+  exclude:
+  - generate_rails

@@ -25,10 +25,9 @@ Provisional::SCM::Github#checkin calls @options["name"] multiple times (Duplicat
 Provisional::SCM::Github#checkin has approx 7 statements (Long Method)
 Provisional::SCM::Github#checkin refers to repo more than self (Feature Envy)
 
-"lib/provisional/scm/svn.rb" -- 4 warnings:
+"lib/provisional/scm/svn.rb" -- 3 warnings:
 Provisional::SCM::Svn#generate_rails calls @options["name"] multiple times (Duplication)
 Provisional::SCM::Svn#generate_rails has approx 8 statements (Long Method)
-Provisional::SCM::Svn#generate_rails/block is controlled by argument create_structure (Control Couple)
 Provisional::SCM::Svn#generate_rails/block/block is nested (Nested Iterators)
 
 "lib/provisional/scm/unfuddle.rb" -- 1 warnings:
