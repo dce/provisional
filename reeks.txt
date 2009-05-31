@@ -1,11 +1,10 @@
 (in /Users/mcornick/Sites/provisional)
-"lib/provisional/project.rb" -- 6 warnings:
+"lib/provisional/project.rb" -- 5 warnings:
 Provisional::Project#initialize calls @options["name"] multiple times (Duplication)
 Provisional::Project#initialize calls @options["scm"] multiple times (Duplication)
 Provisional::Project#initialize calls @options["template"] multiple times (Duplication)
 Provisional::Project#initialize calls File.expand_path(@options["template"]) multiple times (Duplication)
 Provisional::Project#initialize calls options[:config] multiple times (Duplication)
-Provisional::Project#is_valid_url? doesn't depend on instance state (Utility Function)
 
 "lib/provisional/rails_application.rb" -- 1 warnings:
 Provisional::RailsApplication#initialize doesn't depend on instance state (Utility Function)

@@ -1,4 +1,5 @@
 require 'active_support'
+require 'provisional'
 require 'uri'
 require 'yaml'
 
@@ -20,7 +21,13 @@ module Provisional
       @options[:scm] ||= 'git'
       @options[:template] ||= 'viget'
 
-      unless is_valid_url?(@options['template'])
+      begin
+        template_is_url = [URI::HTTP, URI::HTTPS].include?(URI.parse(@options['template']).class)
+      rescue URI::InvalidURIError
+        template_is_url = false
+      end
+
+      unless template_is_url
         if File.exist?(File.expand_path(@options['template']))
           @options['template_path'] = File.expand_path(@options['template'])
         else
@@ -46,14 +53,6 @@ module Provisional
       scm.init
       scm.generate_rails
       scm.checkin
-    end
-
-    def is_valid_url?(url)
-      begin
-        [URI::HTTP, URI::HTTPS].include?(URI.parse(url).class)
-      rescue URI::InvalidURIError
-        false
-      end
     end
 
   end
