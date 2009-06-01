@@ -52,7 +52,7 @@ begin
   end
 rescue LoadError
   task :reek do
-    abort "Reek is not available. In order to run rcov, you must: sudo gem install reek"
+    abort "Reek is not available. In order to run reek, you must: sudo gem install reek"
   end
 end
   
