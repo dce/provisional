@@ -30,7 +30,7 @@ class SvnTest < Test::Unit::TestCase
     @scm.generate_rails(false)
   end
 
-  def test_generate_rails_should_raise_RuntimeError_if_any_step_raises_any_exception
+  def test_generate_rails_should_fail_if_any_step_raises_any_exception
     @scm.expects(:system).with("svn co --username=username --password=password url name")
     Dir.expects(:chdir).with('name').raises(Errno::ENOENT)
     assert_raise RuntimeError do
@@ -44,7 +44,7 @@ class SvnTest < Test::Unit::TestCase
     @scm.checkin
   end
 
-  def test_checkin_should_raise_RuntimeError_if_any_step_raises_any_exception
+  def test_checkin_should_fail_if_any_step_raises_any_exception
     @scm.expects(:system).with("svn add *").raises(RuntimeError)
     assert_raise RuntimeError do
       @scm.checkin

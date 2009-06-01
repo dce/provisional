@@ -20,7 +20,7 @@ class GithubTest < Test::Unit::TestCase
     @scm.checkin
   end
 
-  def test_checkin_should_raise_RuntimeError_if_any_step_raises_any_exception
+  def test_checkin_should_fail_if_any_step_raises_any_exception
     stub_git_checkin do |stub|
       stub.expects(:config).with('github.user').returns('user')
       stub.expects(:config).with('github.token').returns('token')

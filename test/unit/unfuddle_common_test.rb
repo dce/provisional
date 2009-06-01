@@ -24,7 +24,7 @@ class UnfuddleCommonTest < Test::Unit::TestCase
     create_repository(options)
   end
 
-  def test_checkin_should_raise_RuntimeError_if_unfuddle_api_call_fails
+  def test_checkin_should_fail_if_unfuddle_api_call_fails
     options = {'username' => 'username', 'password' => 'password', 'domain' => 'domain',
                'name' => 'name', 'scm' => 'unfuddle', 'id' => 'id'}
     Unfuddle::Repository.expects(:create).with(:abbreviation => 'name',

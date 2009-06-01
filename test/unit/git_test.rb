@@ -14,7 +14,7 @@ class GitTest < Test::Unit::TestCase
     @scm.init
   end
 
-  def test_init_should_raise_RuntimeError_if_any_step_raises_any_exception
+  def test_init_should_fail_if_any_step_raises_any_exception
     FileUtils.expects(:mkdir_p).with('name').raises(Errno::EEXIST)
     assert_raise RuntimeError do
       @scm.init
@@ -26,7 +26,7 @@ class GitTest < Test::Unit::TestCase
     @scm.generate_rails
   end
 
-  def test_generate_rails_should_raise_RuntimeError_if_any_step_raises_any_exception
+  def test_generate_rails_should_fail_if_any_step_raises_any_exception
     Provisional::RailsApplication.expects(:new).raises(RuntimeError)
     assert_raise RuntimeError do
       @scm.generate_rails
@@ -38,7 +38,7 @@ class GitTest < Test::Unit::TestCase
     @scm.checkin
   end
 
-  def test_checkin_should_raise_RuntimeError_if_any_step_raises_any_exception
+  def test_checkin_should_fail_if_any_step_raises_any_exception
     Git.expects(:open).raises(ArgumentError)
     assert_raise RuntimeError do
       @scm.checkin

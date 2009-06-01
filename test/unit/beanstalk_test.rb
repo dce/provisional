@@ -11,7 +11,7 @@ class BeanstalkTest < Test::Unit::TestCase
     @scm.init
   end
 
-  def test_init_should_raise_RuntimeError_if_any_step_raises_any_exception
+  def test_init_should_fail_if_any_step_raises_any_exception
     Beanstalk::Repository.expects(:create).raises(Errno::ECONNREFUSED)
     assert_raise RuntimeError do
       @scm.init
