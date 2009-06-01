@@ -7,9 +7,7 @@ class ProjectTest < Test::Unit::TestCase
 
   def stub_git
     git_stub = stub()
-    git_stub.expects(:init).returns('true')
-    git_stub.expects(:generate_rails).returns('true')
-    git_stub.expects(:checkin).returns('true')
+    git_stub.expects(:provision).returns('true')
     Provisional::SCM::Git.expects(:new).returns(git_stub)
   end
 
