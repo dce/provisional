@@ -1,15 +1,3 @@
 (in /Users/mcornick/Sites/provisional)
 "lib/provisional/rails_application.rb" -- 1 warnings:
 Provisional::RailsApplication#initialize doesn't depend on instance state (Utility Function)
-
-"lib/provisional/scm/beanstalk.rb" -- 1 warnings:
-Provisional::SCM::Beanstalk#init has approx 6 statements (Long Method)
-
-"lib/provisional/scm/git.rb" -- 1 warnings:
-Provisional::SCM::Git#checkin has approx 6 statements (Long Method)
-
-"lib/provisional/scm/github.rb" -- 1 warnings:
-Provisional::SCM::Github#checkin has approx 7 statements (Long Method)
-
-"lib/provisional/scm/svn.rb" -- 1 warnings:
-Provisional::SCM::Svn#generate_rails has approx 8 statements (Long Method)

@@ -13,4 +13,11 @@ NestedIterators:
 
 FeatureEnvy:
   exclude:
-  - create_repository
+  - xml_payload
+
+UtilityFunction:
+  exclude:
+  - xml_payload
+
+LongMethod: 
+  max_statements: 10
