@@ -1,3 +1,5 @@
+# FIXME: Provisional::RailsApplication#initialize doesn't depend on instance state (Utility Function)
+
 require 'rails/version'
 require 'rails_generator'
 require 'rails_generator/scripts/generate'

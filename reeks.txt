@@ -1,3 +1,0 @@
-(in /Users/mcornick/Sites/provisional)
-"lib/provisional/rails_application.rb" -- 1 warnings:
-Provisional::RailsApplication#initialize doesn't depend on instance state (Utility Function)
