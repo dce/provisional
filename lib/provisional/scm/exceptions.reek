@@ -8,3 +8,7 @@ Duplication:
 ControlCouple: 
   exclude:
   - generate_rails
+
+FeatureEnvy:
+  exclude:
+  - checkin
