@@ -1,5 +1,10 @@
-require 'net/http'
-require 'builder'
+require 'rubygems'
+require 'active_resource'
+
+module Unfuddle
+  class Repository < ActiveResource::Base
+  end
+end
 
 def ensure_required_options(options)
   %w(username password domain id).each do |opt|
@@ -7,29 +12,15 @@ def ensure_required_options(options)
   end
 end
 
-def xml_payload(options)
-  xml = Builder::XmlMarkup.new
-  xml.repository do
-    xml.abbreviation options['name']
-    xml.title options['name']
-    xml.system options['scm']
-    xml.projects do
-      xml.project(:id => options['id'])
-    end
-  end
-  return xml.target!
-end
-
 def create_repository(options)
   begin
-    http = Net::HTTP.new("#{options['domain']}.unfuddle.com", 80)
-    request = Net::HTTP::Post.new('/api/v1/repositories.xml', 'Content-Type' => 'application/xml')
-    request.basic_auth(options['username'], options['password'])
-    request.body = xml_payload(options)
-    response, data = http.request(request)
-    unless response.code == "201"
-      raise RuntimeError, "Repository not created on Unfuddle due to HTTP error: #{response.code}"
-    end
+    Unfuddle::Repository.site     = "http://#{options['domain']}.unfuddle.com/api/v1"
+    Unfuddle::Repository.user     = options['username']
+    Unfuddle::Repository.password = options['password']
+    Unfuddle::Repository.create   :abbreviation => options['name'],
+                                  :title => options['name'],
+                                  :system => options['scm'] == 'unfuddle_svn' ? 'svn' : 'git',
+                                  :projects => [{:id => options['id']}]
   rescue
     raise RuntimeError, "Repository not created on Unfuddle due to exception: #{$!}"
   end

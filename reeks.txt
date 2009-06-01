@@ -8,14 +8,8 @@ Provisional::SCM::Beanstalk#init has approx 6 statements (Long Method)
 "lib/provisional/scm/git.rb" -- 1 warnings:
 Provisional::SCM::Git#checkin has approx 6 statements (Long Method)
 
-"lib/provisional/scm/github.rb" -- 2 warnings:
+"lib/provisional/scm/github.rb" -- 1 warnings:
 Provisional::SCM::Github#checkin has approx 7 statements (Long Method)
-Provisional::SCM::Github#checkin refers to repo more than self (Feature Envy)
 
 "lib/provisional/scm/svn.rb" -- 1 warnings:
 Provisional::SCM::Svn#generate_rails has approx 8 statements (Long Method)
-
-"lib/provisional/unfuddle_common.rb" -- 3 warnings:
-create_repository has approx 7 statements (Long Method)
-xml_payload doesn't depend on instance state (Utility Function)
-xml_payload has approx 7 statements (Long Method)

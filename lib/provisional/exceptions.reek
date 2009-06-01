@@ -13,4 +13,4 @@ NestedIterators:
 
 FeatureEnvy:
   exclude:
-  - xml_payload
+  - create_repository
