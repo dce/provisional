@@ -13,6 +13,7 @@ options = Trollop::options do
   opt :password, "Password (for some SCMs, see documentation)", :type => String
   opt :id, "Id (for some SCMs, see documentation)", :type => String
   opt :config, "Config file (optional)", :type => String
+  opt :private, "Private repository (for some SCMs, see documentation)"
 end
 
 Provisional::Project.new(options)

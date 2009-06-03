@@ -18,9 +18,10 @@ module Provisional
           connection.start do |http|
             req = Net::HTTP::Post.new("/api/v2/yaml/repos/create")
             req.set_form_data(
-              'login' => github_user,
-              'token' => github_token,
-              'name'  => @options['name']
+              'login'   => github_user,
+              'token'   => github_token,
+              'name'    => @options['name'],
+              'public'  => @options.keys.include?('private') ? 0 : 1
             )
             http.request(req)
           end
