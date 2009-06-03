@@ -14,7 +14,7 @@ class GithubTest < Test::Unit::TestCase
       stub.expects(:push)
     end
 
-    URI.expects(:parse).with('https://github.com/api/v2/yaml/repos/create')
+    URI.expects(:parse).with('http://github.com/api/v2/yaml/repos/create')
     Net::HTTP.expects(:post_form).with(nil, { 'login' => 'user', 'token' => 'token', 'name' => 'name' })
 
     @scm.checkin
@@ -26,7 +26,7 @@ class GithubTest < Test::Unit::TestCase
       stub.expects(:config).with('github.token').returns('token')
     end
 
-    URI.expects(:parse).with('https://github.com/api/v2/yaml/repos/create')
+    URI.expects(:parse).with('http://github.com/api/v2/yaml/repos/create')
     Net::HTTP.expects(:post_form).with(nil, { 'login' => 'user', 'token' => 'token', 'name' => 'name' }).raises(Net::HTTPUnauthorized)
 
     assert_raise RuntimeError do
