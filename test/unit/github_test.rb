@@ -14,8 +14,9 @@ class GithubTest < Test::Unit::TestCase
       stub.expects(:push)
     end
 
-    URI.expects(:parse).with('http://github.com/api/v2/yaml/repos/create')
-    Net::HTTP.expects(:post_form).with(nil, { 'login' => 'user', 'token' => 'token', 'name' => 'name' })
+    stub_github do |stub|
+      stub.expects(:request).returns(true)
+    end
 
     @scm.checkin
   end
@@ -26,11 +27,25 @@ class GithubTest < Test::Unit::TestCase
       stub.expects(:config).with('github.token').returns('token')
     end
 
-    URI.expects(:parse).with('http://github.com/api/v2/yaml/repos/create')
-    Net::HTTP.expects(:post_form).with(nil, { 'login' => 'user', 'token' => 'token', 'name' => 'name' }).raises(Net::HTTPUnauthorized)
+    stub_github do |stub|
+      stub.expects(:request).raises(Net::HTTPUnauthorized)
+    end
 
     assert_raise RuntimeError do
       @scm.checkin
     end
+  end
+
+  private
+
+  def stub_github
+    http = stub
+
+    connection = stub(:use_ssl= => true, :verify_mode= => true)
+    connection.expects(:start).yields(http)
+
+    Net::HTTP.expects(:new).with('github.com', 443).returns(connection)
+
+    yield http
   end
 end
