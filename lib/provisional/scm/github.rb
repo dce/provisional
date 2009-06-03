@@ -1,5 +1,6 @@
 require 'provisional/scm/git'
 require 'net/http'
+require 'net/https'
 
 module Provisional
   module SCM
