@@ -27,6 +27,7 @@ Provisional is only tested on Mac OS X. It should also work on Linux. It is not 
       --password, -p <s>:   Password (for some SCMs, see below)
             --id, -i <s>:   Id (for some SCMs, see below)
         --config, -c <s>:   Config file (optional)
+          --private, -r:   Private repository (for some SCMs, see documentation)
               --help, -h:   Show this message
 
 The SCM option can be one of the following ("`project_name`" refers to the value of the --name option):
@@ -60,6 +61,8 @@ Options specified via the command line take precedence over options specified in
 ## GitHub
 
 To use [GitHub](http://github.com/), you will need to place your GitHub username and token in your Git configuration as described here: http://github.com/guides/local-github-config Since there is already this established convention for GitHub credentials, to prevent redundant configuration, Provisional does not use its own configuration options for GitHub access.
+
+By default, repositories are publicly accessible. Use `--private` to make it private.
 
 ## Unfuddle
 
